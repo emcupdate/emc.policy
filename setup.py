@@ -26,6 +26,9 @@ setup(name='emc.policy',
       install_requires=[
           'setuptools',
           'Products.CMFPlone',
+          'z3c.jbot',
+          'collective.wtf',
+          'collective.monkeypatcher',
                     
           # -*- Extra requirements: -*-
       ],

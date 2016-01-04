@@ -4,6 +4,7 @@
     <dependencies> 
         <dependency>profile-emc.theme:default</dependency>
         <dependency>profile-emc.bokeh:default</dependency>
-                      
+        <dependency>profile-emc.memberArea:default</dependency>
+        <dependency>profile-emc.project:default</dependency>                      
     </dependencies>  
 </metadata>

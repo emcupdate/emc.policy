@@ -1,0 +1,30 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:monkey="http://namespaces.plone.org/monkey">
+
+
+
+  <utility
+      name="zh"
+      provides="plone.i18n.normalizer.interfaces.IFileNameNormalizer"
+      component=".zh.normalizer"
+      permission="zope.Public" />
+
+  <utility
+      name="zh"
+      provides="plone.i18n.normalizer.interfaces.IURLNormalizer"
+      component=".zh.normalizer"
+      permission="zope.Public" />
+      
+  <include package="collective.monkeypatcher" />
+
+
+
+    <monkey:patch
+     description="patch file field class for file download"
+     class ="plone.app.blob.field.BlobWrapper"
+     original="index_html"
+     replacement=".filedownload.index_html"
+  /> 
+
+</configure>
