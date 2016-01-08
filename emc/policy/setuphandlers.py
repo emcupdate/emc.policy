@@ -3,6 +3,8 @@ from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from plone import api
 from plone.app.dexterity.behaviors import constrains
 from logging import getLogger
+from zope import event
+from emc.memberArea.events import MemberAreaCreatedEvent
 
 logger = getLogger(__name__)
 
@@ -91,6 +93,19 @@ def post_install(context):
     members = portal.get('news', None)
     if members is not None:
         api.content.delete(members)
+    members = portal.get('Members', None)
+    if members is not None:
+       members.exclude_from_nav = True
+       members.reindexObject()
+       # give admin create memberarea
+    pm = api.portal.get_tool(name='portal_membership')
+    current = api.user.get_current()
+    try:
+        pm.createMemberarea(member_id= current.id)
+        event.notify(MemberAreaCreatedEvent(current))
+    except:
+        return
+               
                 
 
 

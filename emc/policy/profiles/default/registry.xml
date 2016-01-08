@@ -1,5 +1,60 @@
 <?xml version="1.0"?>
 <registry>
+<!-- navigation setting -->
+  <record name="plone.sitemap_depth" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="sitemap_depth">
+    <field type="plone.registry.field.Int">
+      <default>3</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Number of folder levels to show in the site map.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Sitemap depth</title>
+    </field>
+    <value>5</value>
+  </record>
+  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <field type="plone.registry.field.Tuple">
+      <default>
+        <element>Image</element>
+        <element>File</element>
+        <element>Link</element>
+        <element>News Item</element>
+        <element>Folder</element>
+        <element>Document</element>
+        <element>Event</element>
+      </default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">The content types that should be shown in the navigation and site map.</description>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Displayed content types</title>
+      <value_type type="plone.registry.field.Choice">
+        <vocabulary>plone.app.vocabularies.ReallyUserFriendlyTypes</vocabulary>
+      </value_type>
+    </field>
+    <value>
+      <element>Image</element>
+      <element>File</element>
+      <element>Link</element>
+      <element>News Item</element>
+      <element>Folder</element>
+      <element>Document</element>
+      <element>Event</element>
+      <element>emc.project.projectFolder</element>
+      <element>emc.project.project</element>
+      <element>emc.project.team</element>
+      <element>emc.project.analysisDoc</element>
+      <element>emc.project.auditDoc</element> 
+      <element>emc.project.diagnoseDoc</element>
+      <element>emc.project.designDoc</element>
+      <element>emc.memberArea.workspace</element>
+      <element>emc.memberArea.messagebox</element>
+      <element>emc.memberArea.inputbox</element>
+      <element>emc.memberArea.outputbox</element>
+      <element>emc.memberArea.message</element>
+      <element>emc.memberArea.myfolder</element>
+      <element>emc.memberArea.inputbox</element>
+      <element>emc.memberArea.todo</element>
+      <element>emc.memberArea.favorite</element>
+      <element>emc.bokeh.fearture</element>                                           
+    </value>
+  </record>
+
 <records interface="Products.CMFPlone.interfaces.ISecuritySchema" prefix="plone">
     <value key="enable_self_reg">True</value>
     <value key="enable_user_pwd_choice">True</value>

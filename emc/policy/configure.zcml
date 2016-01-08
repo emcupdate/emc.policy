@@ -8,7 +8,7 @@
     i18n_domain="emc.policy">
 
   <five:registerPackage package="." initialize=".initialize" />
-
+  <i18n:registerTranslations directory="locales" />
   <genericsetup:registerProfile
       name="default"
       title="emc.policy"
@@ -58,6 +58,12 @@
   -->  
    <include package=".browser" />
    <include package=".patch" />
+<!-- login redirection to workspace
+<subscriber
+    for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
+    handler=".subscriber.userLoginedIn"
+    />   
+    -->
     <genericsetup:importStep
         name="emc.policy-postInstall"
         title="emc.policy post_install import step"

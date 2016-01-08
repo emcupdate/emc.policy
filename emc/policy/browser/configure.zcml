@@ -7,7 +7,13 @@
  	<browser:resourceDirectory
   name="emc.policy"
   directory="static" />
-  
+    <browser:page
+      for="*"
+      name="member_url"
+      class=".member_view.WorkspaceUrlView"
+ 		  layer="emc.theme.interfaces.IThemeSpecific"       
+      permission="zope.Public"
+      />
 
 
   <browser:page
