@@ -11,68 +11,110 @@ logger = getLogger(__name__)
 
 STRUCTURE = [
     {
-        'type': 'Folder',
-        'title': u'The Event',
-        'id': 'the-event',
-        'description': u'Plone Conference 2022',
-        'default-page': 'frontpage-for-the-event',
-        'children': [{
-            'type': 'Document',
-            'title': u'Frontpage for the-event',
-            'id': 'frontpage-for-the-event',
-            'description': u'',
-            },
-            {
-            'type': 'Folder',
-            'title': u'Talks',
-            'id': 'talks',
-            'description': u'',
-            'layout': 'talklistview',
-            },
-            {
-            'type': 'Folder',
-            'title': u'Training',
-            'id': 'training',
-            'description': u'',
-            },
-            {
-            'type': 'Folder',
-            'title': u'Sprint',
-            'id': 'sprint',
-            'description': u'',
-            },
-        ]
-    },
-    {
-        'type': 'Folder',
-        'title': u'Talks',
-        'id': 'talks',
-        'description': u'Submit your talks here!',
-        'layout': '@@talklistview',
-        'allowed_types': ['talk'],
-        'local_roles': [{
-            'group': 'AuthenticatedUsers',
-            'roles': ['Contributor']
-        }],
-    },
-    {
-        'type': 'Folder',
-        'title': u'News',
-        'id': 'news',
-        'description': u'News about the Plone Conference',
-        'children': [{
-            'type': 'News Item',
-            'title': u'Submit your talks!',
-            'id': 'submit-your-talks',
-            'description': u'', }
-        ],
-    },
-    {
-        'type': 'Folder',
-        'title': u'Events',
-        'id': 'events',
-        'description': u'Dates to keep in mind',
-    },
+        'type': 'emc.project.projectFolder',
+        'title': u'项目管理',
+        'id': 'project_folder',
+        'description': u'项目容器',
+        'layout': 'ajax_listings',
+        'children': [
+                     {
+            'type': 'emc.project.project',
+            'title': u'笔记本E210',
+            'id': 'notebooke210',
+            'description': u'笔记本E210EMC项目',
+            'layout': 'ajax_listings',
+            'children': [
+                         {'type': 'emc.project.team',
+                          'title': u'主板',
+                          'id': 'motherboard',
+                          'description': u'主板组',
+                          'security_level':'public',
+                          'task_type':'train',
+                          'layout': 'ajax_listings',                          
+                                             } ,  
+                         {'type': 'emc.project.team',
+                          'title': u'显卡',
+                          'id': 'displaycard',
+                          'description': u'显卡',
+                          'security_level':'public',
+                          'task_type':'train',
+                          'layout': 'ajax_listings',
+                           'children': [
+                                        {'type': 'emc.project.analysisDoc',
+                                         'title': u'显卡分析',
+                                         'id': 'analysis',
+                                         'description': u'显卡分析文档',
+                                         'security_level':'public',
+                                         'task_type':'train',                          
+                                                                             } ,  
+                                        {'type': 'emc.project.designDoc',
+                                         'title': u'显卡设计',
+                                         'id': 'design',
+                                         'description': u'显卡设计文档',
+                                         'security_level':'public',
+                                         'task_type':'train',
+                                                                         } ,    
+                                        {'type': 'emc.project.auditDoc',
+                                         'title': u'显卡审核',
+                                         'id': 'audit',
+                                         'description': u'显卡审核文档',
+                                         'security_level':'public',
+                                         'task_type':'train',
+                                                                         } ,  
+                                        {'type': 'emc.project.diagnoseDoc',
+                                         'title': u'故障诊断',
+                                         'id': 'diagnose',
+                                         'description': u'故障诊断文档',
+                                         'security_level':'public',
+                                         'task_type':'train',
+                                                                         } ,                                                                                       
+                         
+                                                                        ]
+                                             } ,                                                
+                         {'type': 'emc.project.team',
+                          'title': u'网卡',
+                          'id': 'network',
+                          'description': u'网卡',
+                          'security_level':'public',
+                          'task_type':'train',
+                          'layout': 'ajax_listings',
+                           'children': [
+                                        {'type': 'emc.project.analysisDoc',
+                                         'title': u'网卡分析',
+                                         'id': 'analysis',
+                                         'description': u'网卡分析文档',
+                                         'security_level':'public',
+                                         'task_type':'train',                          
+                                                                             } ,  
+                                        {'type': 'emc.project.designDoc',
+                                         'title': u'网卡设计',
+                                         'id': 'design',
+                                         'description': u'网卡设计文档',
+                                         'security_level':'public',
+                                         'task_type':'train',
+                                                                         } ,    
+                                        {'type': 'emc.project.auditDoc',
+                                         'title': u'网卡审核',
+                                         'id': 'audit',
+                                         'description': u'网卡审核文档',
+                                         'security_level':'public',
+                                         'task_type':'train',
+                                                                         } ,  
+                                        {'type': 'emc.project.diagnoseDoc',
+                                         'title': u'故障诊断',
+                                         'id': 'diagnose',
+                                         'description': u'故障诊断文档',
+                                         'security_level':'public',
+                                         'task_type':'train',
+                                                                         } ,                                                                                       
+                         
+                                                                        ]
+                                             } ,                            
+                                            ]
+                      },
+           
+                ]
+    },   
 ]
 
 
@@ -101,10 +143,21 @@ def post_install(context):
     pm = api.portal.get_tool(name='portal_membership')
     current = api.user.get_current()
     try:
-        pm.createMemberarea(member_id= current.id)
+        pm.createMemberarea(member_id= current.id)      
         event.notify(MemberAreaCreatedEvent(current))
     except:
         return
+    
+
+    for item in STRUCTURE:
+        _create_content(item, portal)
+#     from plone import api
+    for i in range(1,20): 
+        user = api.user.create(
+                               username='test%s' % i,
+                               email='test%s@plone.org' % i,
+                               password='secret',
+                               )    
                
                 
 
@@ -114,9 +167,8 @@ def content(context):
     """
     if context.readDataFile('emcpolicy_content_marker.txt') is None:
         return
-    portal = api.portal.get()
-    for item in STRUCTURE:
-        _create_content(item, portal)
+    pass
+
 
 
 def _create_content(item, container):
@@ -126,6 +178,7 @@ def _create_content(item, container):
             type=item['type'],
             container=container,
             title=item['title'],
+            description=item['description'],            
             id=item['id'],
             safe_id=False)
         logger.info('Created item {}'.format(new.absolute_url()))

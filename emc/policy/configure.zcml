@@ -23,39 +23,7 @@
      original="loginUser"
      replacement=".patch.membership.loginUser"
   /> 
-<!--  
-    <monkey:patch
-     description="patch system configuration to enable personal folder"
-     class ="plone.app.controlpanel.security.SecurityControlPanelAdapter"
-     original="get_enable_user_folders"
-     replacement=".patch.membership.get_enable_user_folders"
-  /> 
 
-     <monkey:patch
-     description="patch the specify dexterity container enable comment function"
-     class ="plone.app.discussion.browser.conversation.ConversationView"
-     original="enabled"
-     replacement=".patch.enable_comment.enabled"
-  />
-     <monkey:patch
-     description="patch the specify dexterity container enable comment function"
-     class ="plone.app.discussion.browser.comments.CommentsViewlet"
-     original="anonymous_discussion_allowed"
-     replacement=".patch.enable_comment.anonymous_discussion_allowed"
-  />
-  	  <monkey:patch
-	  description="new get id"
-	  class ="plone.app.content.namechooser.NormalizingNameChooser"
-      original="chooseName"
-      replacement=".patch.namechooser.chooseName"
-  />
-  <monkey:patch
-     description="patch when create Member area function fire a createMemberArea event"
-     class ="Products.PluggableAuthService.PluggableAuthService.PluggableAuthService"
-     original="logout"
-     replacement=".patch.logout.logout"
-  /> 
-  -->  
    <include package=".browser" />
    <include package=".patch" />
 <!-- login redirection to workspace
