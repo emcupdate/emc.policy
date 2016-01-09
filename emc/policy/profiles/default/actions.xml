@@ -23,8 +23,19 @@
  </object>
  <object name="user" meta_type="CMF Action Category">
   <property name="title"></property>
-  <object name="mystuff" meta_type="CMF Action" i18n:domain="plone" remove="true">
-
+  <object name="mystuff" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">My Folder</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${portal/portal_membership/getHomeUrl}</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">python:(member is not None) and (portal.portal_membership.getHomeFolder() is not None)</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">False</property>
   </object>
   <property name="title"></property>
   <object name="mystorage" meta_type="CMF Action" i18n:domain="plone">
