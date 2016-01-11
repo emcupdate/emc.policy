@@ -1,6 +1,6 @@
 #-*- coding: UTF-8 -*-
 from Products.CMFCore.utils import getToolByName
-from xtshzz.policy.testing import POLICY_INTEGRATION_TESTING,FunctionalTesting 
+from emc.policy.testing import INTEGRATION_TESTING,FunctionalTesting 
 
 from plone.app.testing import TEST_USER_ID, login, TEST_USER_NAME, \
     TEST_USER_PASSWORD, setRoles,logout

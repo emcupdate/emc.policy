@@ -8,11 +8,12 @@ from emc.project.content.project import IProject
 from emc.project.content.projectfolder import IProjectFolder
 
 from emc.theme.interfaces import IThemeSpecific
+from emc.memberArea.browser.workspace import WorkspaceView
 
 
 grok.templatedir('templates')
 
-class FrontpageView(grok.View):
+class FrontpageView(WorkspaceView):
      
     grok.context(ISiteRoot)
     grok.template('homepage')
@@ -21,14 +22,7 @@ class FrontpageView(grok.View):
     grok.require('zope2.View')      
 
     
-    def carouselid(self):
-        return "carouselid"
-    
-    def active(self,i):
-        if i == 0:
-            return "active"
-        else:
-            return ""
+
         
     @memoize
     def carouselresult(self):
@@ -117,19 +111,8 @@ class FrontpageView(grok.View):
     <span class="glyphicon glyphicon-chevron-right"></span>
   </a>
 </div>""" % dict(carouselid = ''.join(["#", self.carouselid()]))
-        return ''.join([result,out])
-                
+        return ''.join([result,out])            
               
-# roll zone
-
-
-        
-    def rollheader(self):
-        return u"新闻"
-    
-    def rollmore(self):
-        context = self.getOrgnizationFolder()
-        return context.absolute_url()
 
 
         
@@ -140,14 +123,5 @@ class FrontpageView(grok.View):
         context = brains[0].getObject()
         return context        
         
-    def getable(self,view):
-        """view: a organization folder object's view name
-        call view come from my315ok.socialorgnization orgnization_listing module,
-        view name may be "orgnizations_administrative","orgnizations_survey"
-        """
-        context = self.ProjectFolder()
-        fview = getMultiAdapter((context,self.request),name=view)
-        # call getMemberList function output table
-        # fetch 20 items roll
-        return fview.getMemberList(start=0,size=20,)
+
             

@@ -194,7 +194,7 @@ def _create_content(item, container):
                 groupname=local_role['group'],
                 roles=local_role['roles'],
                 obj=new)
-    api.content.transition(new, to_state=item.get('state', 'published'))
+#     api.content.transition(new, to_state=item.get('state', 'published'))
     new.reindexObject()
     # call recursively for children
     for subitem in item.get('children', []):
