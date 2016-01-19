@@ -6,6 +6,10 @@ from logging import getLogger
 from zope import event
 from emc.memberArea.events import MemberAreaCreatedEvent
 
+from z3c.relationfield import RelationValue
+from zope.intid import IntIds
+from zope.intid.interfaces import IIntIds
+
 logger = getLogger(__name__)
 
 
@@ -114,7 +118,130 @@ STRUCTURE = [
                       },
            
                 ]
-    },   
+    },
+{
+        'type': 'emc.kb.folder',
+        'title': u'知识库',
+        'id': 'kb_folder',
+        'description': u'知识库',
+        'layout': 'ajax_listings',
+        'children': [{
+                      'type': 'emc.kb.qustionfolder',
+                      'title': u'问题库',
+                      'id': 'question_folder',
+                      'description': u'问题库',
+                      'layout': 'ajax_listings',
+                      'children':[{
+                                   'type': 'emc.kb.qustion',
+                                   'title': u'问题1',
+                                   'id': 'question1',
+                                   'description': u'问题1',
+                                   'layout': 'ajax_listings',
+                                   'children':[{
+                                                'type': 'emc.kb.answer',
+                                                'title': u'问题1下答案1',
+                                                'id': 'answer1',
+                                                'description': u'问题1下答案1',
+                                                'layout': 'ajax_listings',                                                
+                                                },
+                                               {
+                                                'type': 'emc.kb.answer',
+                                                'title': u'问题1下答案2',
+                                                'id': 'answer2',
+                                                'description': u'问题1下答案2',
+                                                'layout': 'ajax_listings',                                                  
+                                                },
+                                               {
+                                                'type': 'emc.kb.answer',
+                                                'title': u'问题1下答案3',
+                                                'id': 'answer3',
+                                                'description': u'问题1下答案3',
+                                                'layout': 'ajax_listings',                                                  
+                                                }]                                                         
+                                   },
+                                  {
+                                   'type': 'emc.kb.qustion',
+                                   'title': u'问题2',
+                                   'id': 'question2',
+                                   'description': u'问题2',
+                                   'layout': 'ajax_listings',
+                                   'children':[
+                                               {
+                                                'type': 'emc.kb.answer',
+                                                'title': u'问题2下答案1',
+                                                'id': 'answer1',
+                                                'description': u'问题2下答案1',
+                                                'layout': 'ajax_listings',                                                
+                                                },
+                                               {
+                                                'type': 'emc.kb.answer',
+                                                'title': u'问题2下答案2',
+                                                'id': 'answer2',
+                                                'description': u'问题2下答案2',
+                                                'layout': 'ajax_listings',                                                  
+                                                },
+                                               {
+                                                'type': 'emc.kb.answer',
+                                                'title': u'问题2下答案3',
+                                                'id': 'answer3',
+                                                'description': u'问题2下答案3',
+                                                'layout': 'ajax_listings',                                                  
+                                                }
+                                               ]                                     
+                                   },
+                                  {
+                                   'type': 'emc.kb.qustion',
+                                   'title': u'问题3',
+                                   'id': 'question3',
+                                   'description': u'问题3',
+                                   'layout': 'ajax_listings',
+                                   'children':[
+{
+                                                'type': 'emc.kb.answer',
+                                                'title': u'问题3答案1',
+                                                'id': 'answer1',
+                                                'description': u'问题3答案1',
+                                                'layout': 'ajax_listings',                                                
+                                                },
+                                               {
+                                                'type': 'emc.kb.answer',
+                                                'title': u'问题3答案2',
+                                                'id': 'answer2',
+                                                'description': u'问题3答案2',
+                                                'layout': 'ajax_listings',                                                  
+                                                },
+                                               {
+                                                'type': 'emc.kb.answer',
+                                                'title': u'问题3答案3',
+                                                'id': 'answer3',
+                                                'description': u'问题3答案3',
+                                                'layout': 'ajax_listings',                                                  
+                                                }                                               
+                                               ]                                     
+                                   }]
+                      },
+                     {
+                      'type': 'emc.kb.topicfolder',
+                      'title': u'话题库',
+                      'id': 'topic_folder',
+                      'description': u'话题库',
+                      'layout': 'ajax_listings',
+                      'children':[{
+                                   'type': 'emc.kb.topic',
+                                   'title': u'话题1',
+                                   'id': 'topic1',
+                                   'description': u'话题1',
+                                   'layout': 'ajax_listings',                                                                     
+                                   },
+                                  {
+                                   'type': 'emc.kb.topic',
+                                   'title': u'话题2',
+                                   'id': 'topic2',
+                                   'description': u'话题2',
+                                   'layout': 'ajax_listings',                                                                     
+                                   }]                      
+                      },]
+        },                
 ]
 
 
@@ -151,7 +278,17 @@ def post_install(context):
 
     for item in STRUCTURE:
         _create_content(item, portal)
-#     from plone import api
+#     set relation
+    root = portal.get('kb_folder', None)
+    q1 = root['question_folder']['question1']
+    q2 = root['question_folder']['question2']
+    q3 = root['question_folder']['question3']
+        
+    t1 = root['topic_folder']['topic1']
+    t2 = root['topic_folder']['topic2']
+    q1.affiliatedtopics = [RelationValue(intids.getId(t1)),RelationValue(intids.getId(t2))]
+    q3.affiliatedtopics = [RelationValue(intids.getId(t1)),RelationValue(intids.getId(t2))]
+    t1.relatedquestion =  [RelationValue(intids.getId(q1)),RelationValue(intids.getId(q2))]   
     for i in range(1,20): 
         user = api.user.create(
                                username='test%s' % i,
