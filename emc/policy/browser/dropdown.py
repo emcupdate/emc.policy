@@ -33,7 +33,7 @@ class DropdownQueryBuilder(NavtreeQueryBuilder):
 #         dropdown_properties = getToolByName(
 #             context, 'portal_properties').dropdown_properties
 #         dropdown_depth = dropdown_properties.getProperty('dropdown_depth', 3)
-        dropdown_depth = 2
+        dropdown_depth = 1
         self.query['path'] = {'query': '/'.join(context.getPhysicalPath()),
                               'navtree_start': 1,
                               'depth': dropdown_depth}

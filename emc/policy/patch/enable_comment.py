@@ -14,7 +14,7 @@ from Products.CMFPlone.interfaces import INonStructuralFolder
 
 from plone.app.discussion.interfaces import IDiscussionSettings
 from zope.component import  queryUtility
-from eisoo.topic.question import Iquestion
+from emc.kb.question import Iquestion
 
 def enabled(self):
     
@@ -75,7 +75,7 @@ def enabled(self):
          
 def anonymous_discussion_allowed(self):
         # Check if anonymous comments are allowed in the registry
-        if self.context.portal_type in ["eisoo.topic.quesstion","eitoo.topic.answer","eisoo.market.hotel"]:
+        if self.context.portal_type in ["emc.kb.quesstion","eitoo.topic.answer","eisoo.market.hotel"]:
             return True
         
         registry = queryUtility(IRegistry)

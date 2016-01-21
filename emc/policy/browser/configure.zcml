@@ -39,7 +39,7 @@
         permission="zope2.View"
         />
     <!-- Override global sections viewlet -->
-
+<!--
     <browser:viewlet
         name="plone.global_sections"
         manager="plone.app.layout.viewlets.interfaces.IMainNavigation"
@@ -48,5 +48,5 @@
         permission="zope2.View"
         />
 
-              
+ -->             
 </configure>

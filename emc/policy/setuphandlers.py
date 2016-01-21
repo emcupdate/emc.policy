@@ -7,6 +7,7 @@ from zope import event
 from emc.memberArea.events import MemberAreaCreatedEvent
 
 from z3c.relationfield import RelationValue
+from zope.component import getUtility
 from zope.intid import IntIds
 from zope.intid.interfaces import IIntIds
 
@@ -124,98 +125,98 @@ STRUCTURE = [
         'title': u'知识库',
         'id': 'kb_folder',
         'description': u'知识库',
-        'layout': 'ajax_listings',
+        'layout': 'view',
         'children': [{
-                      'type': 'emc.kb.qustionfolder',
+                      'type': 'emc.kb.questionfolder',
                       'title': u'问题库',
                       'id': 'question_folder',
                       'description': u'问题库',
-                      'layout': 'ajax_listings',
+                      'layout': 'view',
                       'children':[{
-                                   'type': 'emc.kb.qustion',
+                                   'type': 'emc.kb.question',
                                    'title': u'问题1',
                                    'id': 'question1',
                                    'description': u'问题1',
-                                   'layout': 'ajax_listings',
+                                   'layout': 'view',
                                    'children':[{
                                                 'type': 'emc.kb.answer',
                                                 'title': u'问题1下答案1',
                                                 'id': 'answer1',
                                                 'description': u'问题1下答案1',
-                                                'layout': 'ajax_listings',                                                
+                                                'layout': 'view',                                                
                                                 },
                                                {
                                                 'type': 'emc.kb.answer',
                                                 'title': u'问题1下答案2',
                                                 'id': 'answer2',
                                                 'description': u'问题1下答案2',
-                                                'layout': 'ajax_listings',                                                  
+                                                'layout': 'view',                                                  
                                                 },
                                                {
                                                 'type': 'emc.kb.answer',
                                                 'title': u'问题1下答案3',
                                                 'id': 'answer3',
                                                 'description': u'问题1下答案3',
-                                                'layout': 'ajax_listings',                                                  
+                                                'layout': 'view',                                                  
                                                 }]                                                         
                                    },
                                   {
-                                   'type': 'emc.kb.qustion',
+                                   'type': 'emc.kb.question',
                                    'title': u'问题2',
                                    'id': 'question2',
                                    'description': u'问题2',
-                                   'layout': 'ajax_listings',
+                                   'layout': 'view',
                                    'children':[
                                                {
                                                 'type': 'emc.kb.answer',
                                                 'title': u'问题2下答案1',
                                                 'id': 'answer1',
                                                 'description': u'问题2下答案1',
-                                                'layout': 'ajax_listings',                                                
+                                                'layout': 'view',                                                
                                                 },
                                                {
                                                 'type': 'emc.kb.answer',
                                                 'title': u'问题2下答案2',
                                                 'id': 'answer2',
                                                 'description': u'问题2下答案2',
-                                                'layout': 'ajax_listings',                                                  
+                                                'layout': 'view',                                                  
                                                 },
                                                {
                                                 'type': 'emc.kb.answer',
                                                 'title': u'问题2下答案3',
                                                 'id': 'answer3',
                                                 'description': u'问题2下答案3',
-                                                'layout': 'ajax_listings',                                                  
+                                                'layout': 'view',                                                  
                                                 }
                                                ]                                     
                                    },
                                   {
-                                   'type': 'emc.kb.qustion',
+                                   'type': 'emc.kb.question',
                                    'title': u'问题3',
                                    'id': 'question3',
                                    'description': u'问题3',
-                                   'layout': 'ajax_listings',
+                                   'layout': 'view',
                                    'children':[
 {
                                                 'type': 'emc.kb.answer',
                                                 'title': u'问题3答案1',
                                                 'id': 'answer1',
                                                 'description': u'问题3答案1',
-                                                'layout': 'ajax_listings',                                                
+                                                'layout': 'view',                                                
                                                 },
                                                {
                                                 'type': 'emc.kb.answer',
                                                 'title': u'问题3答案2',
                                                 'id': 'answer2',
                                                 'description': u'问题3答案2',
-                                                'layout': 'ajax_listings',                                                  
+                                                'layout': 'view',                                                  
                                                 },
                                                {
                                                 'type': 'emc.kb.answer',
                                                 'title': u'问题3答案3',
                                                 'id': 'answer3',
                                                 'description': u'问题3答案3',
-                                                'layout': 'ajax_listings',                                                  
+                                                'layout': 'view',                                                  
                                                 }                                               
                                                ]                                     
                                    }]
@@ -225,20 +226,20 @@ STRUCTURE = [
                       'title': u'话题库',
                       'id': 'topic_folder',
                       'description': u'话题库',
-                      'layout': 'ajax_listings',
+                      'layout': 'view',
                       'children':[{
                                    'type': 'emc.kb.topic',
                                    'title': u'话题1',
                                    'id': 'topic1',
                                    'description': u'话题1',
-                                   'layout': 'ajax_listings',                                                                     
+                                   'layout': 'view',                                                                     
                                    },
                                   {
                                    'type': 'emc.kb.topic',
                                    'title': u'话题2',
                                    'id': 'topic2',
                                    'description': u'话题2',
-                                   'layout': 'ajax_listings',                                                                     
+                                   'layout': 'view',                                                                     
                                    }]                      
                       },]
         },                
@@ -270,6 +271,8 @@ def post_install(context):
     pm = api.portal.get_tool(name='portal_membership')
     current = api.user.get_current()
     try:
+
+        pm.memberareaCreationFlag = True
         pm.createMemberarea(member_id= current.id)      
         event.notify(MemberAreaCreatedEvent(current))
     except:
@@ -286,6 +289,7 @@ def post_install(context):
         
     t1 = root['topic_folder']['topic1']
     t2 = root['topic_folder']['topic2']
+    intids = getUtility(IIntIds)
     q1.affiliatedtopics = [RelationValue(intids.getId(t1)),RelationValue(intids.getId(t2))]
     q3.affiliatedtopics = [RelationValue(intids.getId(t1)),RelationValue(intids.getId(t2))]
     t1.relatedquestion =  [RelationValue(intids.getId(q1)),RelationValue(intids.getId(q2))]   
@@ -331,7 +335,8 @@ def _create_content(item, container):
                 groupname=local_role['group'],
                 roles=local_role['roles'],
                 obj=new)
-#     api.content.transition(new, to_state=item.get('state', 'published'))
+    if item.get('publish', False):
+        api.content.transition(new, to_state=item.get('state', 'published'))
     new.reindexObject()
     # call recursively for children
     for subitem in item.get('children', []):

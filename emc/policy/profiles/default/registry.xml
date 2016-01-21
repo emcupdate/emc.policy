@@ -35,6 +35,11 @@
       <element>Folder</element>
       <element>Document</element>
       <element>Event</element>
+      <element>emc.kb.folder</element>
+      <element>emc.kb.questionfolder</element>
+      <element>emc.kb.feedsfolder</element>
+      <element>emc.kb.mentionmefolder</element> 
+      <element>emc.kb.topicfolder</element>                  
       <element>emc.project.projectFolder</element>
       <element>emc.project.project</element>
       <element>emc.project.team</element>
