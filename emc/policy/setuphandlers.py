@@ -131,7 +131,7 @@ STRUCTURE = [
                       'title': u'问题库',
                       'id': 'question_folder',
                       'description': u'问题库',
-                      'layout': 'view',
+                      'layout': 'ajax_listings',
                       'children':[{
                                    'type': 'emc.kb.question',
                                    'title': u'问题1',
@@ -143,6 +143,7 @@ STRUCTURE = [
                                                 'title': u'问题1下答案1',
                                                 'id': 'answer1',
                                                 'description': u'问题1下答案1',
+                                                'content':u'天下事有难易乎',
                                                 'layout': 'view',                                                
                                                 },
                                                {
@@ -150,6 +151,7 @@ STRUCTURE = [
                                                 'title': u'问题1下答案2',
                                                 'id': 'answer2',
                                                 'description': u'问题1下答案2',
+                                                'content':u'天下事有难易乎',
                                                 'layout': 'view',                                                  
                                                 },
                                                {
@@ -157,6 +159,7 @@ STRUCTURE = [
                                                 'title': u'问题1下答案3',
                                                 'id': 'answer3',
                                                 'description': u'问题1下答案3',
+                                                'content':u'天下事有难易乎',
                                                 'layout': 'view',                                                  
                                                 }]                                                         
                                    },
@@ -172,6 +175,7 @@ STRUCTURE = [
                                                 'title': u'问题2下答案1',
                                                 'id': 'answer1',
                                                 'description': u'问题2下答案1',
+                                                'content':u'天下事有难易乎',
                                                 'layout': 'view',                                                
                                                 },
                                                {
@@ -179,6 +183,7 @@ STRUCTURE = [
                                                 'title': u'问题2下答案2',
                                                 'id': 'answer2',
                                                 'description': u'问题2下答案2',
+                                                'content':u'天下事有难易乎',
                                                 'layout': 'view',                                                  
                                                 },
                                                {
@@ -186,6 +191,7 @@ STRUCTURE = [
                                                 'title': u'问题2下答案3',
                                                 'id': 'answer3',
                                                 'description': u'问题2下答案3',
+                                                'content':u'天下事有难易乎',
                                                 'layout': 'view',                                                  
                                                 }
                                                ]                                     
@@ -202,6 +208,7 @@ STRUCTURE = [
                                                 'title': u'问题3答案1',
                                                 'id': 'answer1',
                                                 'description': u'问题3答案1',
+                                                'content':u'天下事有难易乎',
                                                 'layout': 'view',                                                
                                                 },
                                                {
@@ -209,6 +216,7 @@ STRUCTURE = [
                                                 'title': u'问题3答案2',
                                                 'id': 'answer2',
                                                 'description': u'问题3答案2',
+                                                'content':u'天下事有难易乎',
                                                 'layout': 'view',                                                  
                                                 },
                                                {
@@ -216,6 +224,7 @@ STRUCTURE = [
                                                 'title': u'问题3答案3',
                                                 'id': 'answer3',
                                                 'description': u'问题3答案3',
+                                                'content':u'天下事有难易乎',
                                                 'layout': 'view',                                                  
                                                 }                                               
                                                ]                                     
