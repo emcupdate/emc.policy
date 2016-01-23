@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
+from zope.lifecycleevent import ObjectModifiedEvent
 from plone import api
 from plone.app.dexterity.behaviors import constrains
 from logging import getLogger
@@ -301,10 +302,14 @@ def post_install(context):
     intids = getUtility(IIntIds)
     q1.affiliatedtopics = [RelationValue(intids.getId(t1)),RelationValue(intids.getId(t2))]
     q3.affiliatedtopics = [RelationValue(intids.getId(t1)),RelationValue(intids.getId(t2))]
-    t1.relatedquestion =  [RelationValue(intids.getId(q1)),RelationValue(intids.getId(q2))]   
+    t1.relatedquestion =  [RelationValue(intids.getId(q1)),RelationValue(intids.getId(q2))]
+    event.notify(ObjectModifiedEvent(q1))
+    event.notify(ObjectModifiedEvent(q3))
+    event.notify(ObjectModifiedEvent(t1))   
     for i in range(1,20): 
         user = api.user.create(
                                username='test%s' % i,
+#                                fullname=u'张测%s',
                                email='test%s@plone.org' % i,
                                password='secret',
                                )    
