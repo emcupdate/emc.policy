@@ -1,7 +1,8 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:grok="http://namespaces.zope.org/grok"    
+    xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:plone="http://namespaces.plone.org/plone"    
     i18n_domain="emc.policy">
 
  	<browser:resourceDirectory
@@ -39,7 +40,7 @@
         permission="zope2.View"
         />
     <!-- Override global sections viewlet -->
-<!--
+
     <browser:viewlet
         name="plone.global_sections"
         manager="plone.app.layout.viewlets.interfaces.IMainNavigation"
@@ -48,5 +49,10 @@
         permission="zope2.View"
         />
 
- -->             
+ <include package="z3c.jbot" file="meta.zcml" />
+
+<browser:jbot
+    directory="override"
+    layer="emc.theme.interfaces.IThemeSpecific"  />
+            
 </configure>

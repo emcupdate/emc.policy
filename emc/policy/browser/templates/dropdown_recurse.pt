@@ -14,7 +14,7 @@
                 item_url        node/getURL;
                 item_remote_url node/getRemoteUrl;
                 use_remote_url  node/useRemoteUrl | nothing;
-                item_icon       nocall:node/item_icon;
+               
                 normalizeString nocall: context/plone_utils/normalizeString;"
     tal:condition="python:bottomLevel &lt;= 0 or level &lt;= bottomLevel">
 
@@ -26,7 +26,7 @@
         <a tal:attributes="href python:use_remote_url and item_remote_url or item_url;
                            title node/Description;
                            class python:item_clickable and item_class or item_class + ' noClick'">
-            <img tal:replace="structure item_icon/html_tag" />
+            
             <span tal:replace="node/Title">Selected Item Title</span>
         </a>
 

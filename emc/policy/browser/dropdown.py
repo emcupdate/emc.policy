@@ -182,7 +182,7 @@ class DropdownMenuViewlet(common.GlobalSectionsViewlet):
                                strategy=strategy)
 
 #         bottomLevel = self.data.bottomLevel or self.properties.getProperty('bottomLevel', 0)
-        bottomLevel = self.data.bottomLevel or  0
+        bottomLevel = 1
 
         return self.recurse(children=data.get('children', []), level=1,
                             bottomLevel=bottomLevel).strip()

@@ -7,7 +7,7 @@
      i18n:domain="plone">
 
   <p class="hiddenStructure" i18n:translate="heading_sections">Navigation</p>
-  <nav class="navbar navbar-default">
+  <nav class="plone-navbar plone-navbar-default">
   	<div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -21,7 +21,7 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div id="portal-globalnav-collapse" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav"
+      <ul class="plone-nav plone-navbar-nav"
             
             tal:define="selected_tab python:view.selected_portal_tab">
             <tal:tabs tal:repeat="tab portal_tabs">
@@ -35,12 +35,13 @@
                   <a href="#" data-target="#" data-toggle="dropdown"
                      
                      tal:attributes="href tab/url;
-                     						    title tab/description|nothing;
+                     			     title tab/description|nothing;
                                      role string:button;
                                      class python:item_clickable and 'dropdown-toggle' or 'dropdown-toggle noClick';
                                      target tab/link_target|nothing;">
                                      <span  tal:content="tab/name"
-                                     	tal:omit-tag="">Tab Name</span><span class="caret"></span>
+                                     	tal:omit-tag="">Tab Name</span>
+                                     	<span class="caret"></span>
                    	</a>
                     <ul class="dropdown-menu">
                       <tal:subitems tal:replace="structure subitems">
