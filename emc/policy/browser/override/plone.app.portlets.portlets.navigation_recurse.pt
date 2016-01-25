@@ -27,29 +27,24 @@
                        item_type_class python:'contenttype-' + normalizeString(item_type);
                        item_class python:is_current and item_class + ' navTreeCurrentItem' or item_class;">
 
-         <div class="row">
+        
+
+        
+        <a tal:attributes="href python:use_remote_url and item_remote_url or item_url;
+                           title node/Description;
+                           class string:$item_class${li_class}${li_extr_class}${li_folder_class} $item_type_class">          
          <button tal:condition="python: len(children) > 0"
               	class="btn btn-default col-md-1" type="button" 
               	data-toggle="collapse" data-target="#collapse"
               	tal:attributes="data-target python:'#' + item_id;
               	aria-controls python:item_id" 
-              	aria-expanded="false" aria-controls="collapse">+</button>
-        <div class="col-md-11">
-        <a tal:attributes="href python:use_remote_url and item_remote_url or item_url;
-                           title node/Description;
-                           class string:$item_class${li_class}${li_extr_class}${li_folder_class} $item_type_class">          
-              <img class="image-icon"
-                 tal:define="getIcon string:$imageBase/@@images/image/icon"
-                 tal:condition="hasImage"                    
-                 tal:attributes="href string:item_url;
-                                 src  string:$getIcon">                        
+              	aria-expanded="false" aria-controls="collapse">+</button>                        
              
 
               <span tal:replace="node/Title">Selected Item Title</span>
               <span class="badge" tal:content="python:len(children)">12</span>
         </a>
-        </div>
-        </div>
+
 
         <tal:children condition="python: len(children) > 0">
             <ul tal:attributes="class python:'collapse navTree navTreeLevel'+str(level);
