@@ -128,131 +128,21 @@ STRUCTURE = [
         'description': u'知识库',
         'layout': 'view',
         'children': [{
-                      'type': 'emc.kb.questionfolder',
-                      'title': u'问题库',
-                      'id': 'question_folder',
+                      'type': 'emc.kb.ormfolder',
+                      'title': u'数据库',
+                      'id': 'ormfolder',
                       'description': u'问题库',
-                      'layout': 'ajax_listings',
-                      'children':[{
-                                   'type': 'emc.kb.question',
-                                   'title': u'问题1',
-                                   'id': 'question1',
-                                   'description': u'问题1',
-                                   'layout': 'view',
-                                   'children':[{
-                                                'type': 'emc.kb.answer',
-                                                'title': u'问题1下答案1',
-                                                'id': 'answer1',
-                                                'description': u'问题1下答案1',
-                                                'content':u'天下事有难易乎',
-                                                'layout': 'view',                                                
-                                                },
-                                               {
-                                                'type': 'emc.kb.answer',
-                                                'title': u'问题1下答案2',
-                                                'id': 'answer2',
-                                                'description': u'问题1下答案2',
-                                                'content':u'天下事有难易乎',
-                                                'layout': 'view',                                                  
-                                                },
-                                               {
-                                                'type': 'emc.kb.answer',
-                                                'title': u'问题1下答案3',
-                                                'id': 'answer3',
-                                                'description': u'问题1下答案3',
-                                                'content':u'天下事有难易乎',
-                                                'layout': 'view',                                                  
-                                                }]                                                         
-                                   },
-                                  {
-                                   'type': 'emc.kb.question',
-                                   'title': u'问题2',
-                                   'id': 'question2',
-                                   'description': u'问题2',
-                                   'layout': 'view',
-                                   'children':[
-                                               {
-                                                'type': 'emc.kb.answer',
-                                                'title': u'问题2下答案1',
-                                                'id': 'answer1',
-                                                'description': u'问题2下答案1',
-                                                'content':u'天下事有难易乎',
-                                                'layout': 'view',                                                
-                                                },
-                                               {
-                                                'type': 'emc.kb.answer',
-                                                'title': u'问题2下答案2',
-                                                'id': 'answer2',
-                                                'description': u'问题2下答案2',
-                                                'content':u'天下事有难易乎',
-                                                'layout': 'view',                                                  
-                                                },
-                                               {
-                                                'type': 'emc.kb.answer',
-                                                'title': u'问题2下答案3',
-                                                'id': 'answer3',
-                                                'description': u'问题2下答案3',
-                                                'content':u'天下事有难易乎',
-                                                'layout': 'view',                                                  
-                                                }
-                                               ]                                     
-                                   },
-                                  {
-                                   'type': 'emc.kb.question',
-                                   'title': u'问题3',
-                                   'id': 'question3',
-                                   'description': u'问题3',
-                                   'layout': 'view',
-                                   'children':[
-{
-                                                'type': 'emc.kb.answer',
-                                                'title': u'问题3答案1',
-                                                'id': 'answer1',
-                                                'description': u'问题3答案1',
-                                                'content':u'天下事有难易乎',
-                                                'layout': 'view',                                                
-                                                },
-                                               {
-                                                'type': 'emc.kb.answer',
-                                                'title': u'问题3答案2',
-                                                'id': 'answer2',
-                                                'description': u'问题3答案2',
-                                                'content':u'天下事有难易乎',
-                                                'layout': 'view',                                                  
-                                                },
-                                               {
-                                                'type': 'emc.kb.answer',
-                                                'title': u'问题3答案3',
-                                                'id': 'answer3',
-                                                'description': u'问题3答案3',
-                                                'content':u'天下事有难易乎',
-                                                'layout': 'view',                                                  
-                                                }                                               
-                                               ]                                     
-                                   }]
+                      'layout': 'view',
                       },
                      {
-                      'type': 'emc.kb.topicfolder',
-                      'title': u'话题库',
+                      'type': 'emc.kb.kbfolder',
+                      'title': u'资源库',
                       'id': 'topic_folder',
-                      'description': u'话题库',
+                      'description': u'存放各种类型文件的容器',
                       'layout': 'view',
-                      'children':[{
-                                   'type': 'emc.kb.topic',
-                                   'title': u'话题1',
-                                   'id': 'topic1',
-                                   'description': u'话题1',
-                                   'layout': 'view',                                                                     
-                                   },
-                                  {
-                                   'type': 'emc.kb.topic',
-                                   'title': u'话题2',
-                                   'id': 'topic2',
-                                   'description': u'话题2',
-                                   'layout': 'view',                                                                     
-                                   }]                      
-                      },]
-        },                
+                                           
+                      }]
+        }               
 ]
 
 
@@ -292,20 +182,8 @@ def post_install(context):
     for item in STRUCTURE:
         _create_content(item, portal)
 #     set relation
-    root = portal.get('kb_folder', None)
-    q1 = root['question_folder']['question1']
-    q2 = root['question_folder']['question2']
-    q3 = root['question_folder']['question3']
-        
-    t1 = root['topic_folder']['topic1']
-    t2 = root['topic_folder']['topic2']
-    intids = getUtility(IIntIds)
-    q1.affiliatedtopics = [RelationValue(intids.getId(t1)),RelationValue(intids.getId(t2))]
-    q3.affiliatedtopics = [RelationValue(intids.getId(t1)),RelationValue(intids.getId(t2))]
-    t1.relatedquestion =  [RelationValue(intids.getId(q1)),RelationValue(intids.getId(q2))]
-    event.notify(ObjectModifiedEvent(q1))
-    event.notify(ObjectModifiedEvent(q3))
-    event.notify(ObjectModifiedEvent(t1))   
+
+ 
     for i in range(1,20): 
         user = api.user.create(
                                username='test%s' % i,
