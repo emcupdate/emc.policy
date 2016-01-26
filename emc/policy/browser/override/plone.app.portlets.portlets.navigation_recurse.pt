@@ -7,6 +7,7 @@
 <tal:navitem repeat="node children">
 <li tal:define="show_children   node/show_children;
                 children        node/children;
+                haschildren     python:len(children);
                 item_url        node/getURL;
                 item_id         node/item/id;
                 item_remote_url node/getRemoteUrl;
@@ -24,25 +25,28 @@
     tal:condition="python:bottomLevel &lt;= 0 or level &lt;= bottomLevel">
 
     <tal:level define="item_class string:state-${node/normalized_review_state};
-                       item_type_class python:'contenttype-' + normalizeString(item_type);
-                       item_class python:is_current and item_class + ' navTreeCurrentItem' or item_class;">
-
-        
-
-        
-        <a tal:attributes="href python:use_remote_url and item_remote_url or item_url;
+        item_type_class python:'contenttype-' + normalizeString(item_type);
+        item_class python:is_current and item_class + ' navTreeCurrentItem' or item_class;">               
+         <a tal:condition="haschildren"
+              	role="button" class="collapse-control" 
+              	data-toggle="collapse" href="#collapse"
+              	tal:attributes="href python:'#' + item_id;
+              	aria-controls python:item_id;
+              	class string:collapse-control $item_class${li_class}${li_extr_class}${li_folder_class} $item_type_class" 
+              	aria-expanded="false" aria-controls="collapse">
+              	<img class="shown" alt="+" src="++resource++emc.policy/images/pl.gif"/>
+              	<img class="hidden" alt="-" src="++resource++emc.policy/images/mi.gif"/>
+              <span tal:replace="node/Title">Selected Item Title</span>
+              <span class="badge" tal:content="python:len(children)">12</span>              	 
+        </a> 
+        <a tal:condition="python:not haschildren"
+        	tal:attributes="href python:use_remote_url and item_remote_url or item_url;
                            title node/Description;
                            class string:$item_class${li_class}${li_extr_class}${li_folder_class} $item_type_class">          
-         <button tal:condition="python: len(children) > 0"
-              	class="btn btn-default col-md-1" type="button" 
-              	data-toggle="collapse" data-target="#collapse"
-              	tal:attributes="data-target python:'#' + item_id;
-              	aria-controls python:item_id" 
-              	aria-expanded="false" aria-controls="collapse">+</button>                        
+                      
              
 
-              <span tal:replace="node/Title">Selected Item Title</span>
-              <span class="badge" tal:content="python:len(children)">12</span>
+              <span tal:replace="node/Title">Selected Item Title</span>              
         </a>
 
 
@@ -57,5 +61,17 @@
     </tal:level>
 </li>
 </tal:navitem>
+    <script>
+
+$(document).ready(function(){   	
+
+$('.collapse-control').on('click', function () {
+var willshow = $(this).find('.hidden');
+var willhide = $(this).find('.shown');
+ willshow.removeClass('hidden').addClass('shown');
+ willhide.removeClass('shown').addClass('hidden'); 
+});
+})     	
+    </script>
 </metal:main>
 </tal:master>

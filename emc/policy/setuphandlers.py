@@ -126,20 +126,20 @@ STRUCTURE = [
         'title': u'知识库',
         'id': 'kb_folder',
         'description': u'知识库',
-        'layout': 'view',
+        'layout': 'folder_contents',
         'children': [{
                       'type': 'emc.kb.ormfolder',
                       'title': u'数据库',
                       'id': 'ormfolder',
                       'description': u'问题库',
-                      'layout': 'view',
+                      'layout': 'folder_contents',
                       },
                      {
                       'type': 'emc.kb.kbfolder',
                       'title': u'资源库',
                       'id': 'topic_folder',
                       'description': u'存放各种类型文件的容器',
-                      'layout': 'view',
+                      'layout': 'folder_contents',
                                            
                       }]
         }               

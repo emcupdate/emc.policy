@@ -8,20 +8,28 @@
  	<browser:resourceDirectory
   name="emc.policy"
   directory="static" />
-    <browser:page
+  
+   <browser:page
       for="*"
       name="member_url"
       class=".member_view.WorkspaceUrlView"
- 		  layer="emc.theme.interfaces.IThemeSpecific"       
+ 	 layer="emc.theme.interfaces.IThemeSpecific"       
       permission="zope.Public"
       />
-
+  <browser:page
+    for="Products.CMFCore.interfaces._content.IFolderish"
+    class="plone.app.content.browser.contents.FolderContentsView"
+    name="folder_contents"
+ 	layer="emc.theme.interfaces.IThemeSpecific"     
+    template="templates/folder_contents.pt"
+    permission="cmf.ListFolderContents"
+    />
 
   <browser:page
       for="*"
       name="main_template"
       class=".main_template.MainTemplate"
- 		  layer="emc.theme.interfaces.IThemeSpecific"       
+      layer="emc.theme.interfaces.IThemeSpecific"       
       permission="zope.Public"
       />
   <browser:page
