@@ -61,17 +61,6 @@
     </tal:level>
 </li>
 </tal:navitem>
-    <script>
 
-$(document).ready(function(){   	
-
-$('.collapse-control').on('click', function () {
-var willshow = $(this).find('.hidden');
-var willhide = $(this).find('.shown');
- willshow.removeClass('hidden').addClass('shown');
- willhide.removeClass('shown').addClass('hidden'); 
-});
-})     	
-    </script>
 </metal:main>
 </tal:master>
