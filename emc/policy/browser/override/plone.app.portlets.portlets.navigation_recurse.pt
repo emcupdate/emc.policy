@@ -33,9 +33,9 @@
               	tal:attributes="href python:'#' + item_id;
               	aria-controls python:item_id;
               	class string:collapse-control $item_class${li_class}${li_extr_class}${li_folder_class} $item_type_class" 
-              	aria-expanded="false" aria-controls="collapse">
-              	<img class="shown" alt="+" src="++resource++emc.policy/images/pl.gif"/>
-              	<img class="hidden" alt="-" src="++resource++emc.policy/images/mi.gif"/>
+              	aria-expanded="true" aria-controls="collapse">
+              	<img class="hidden" alt="+" src="++resource++emc.policy/images/pl.gif"/>
+              	<img class="shown" alt="-" src="++resource++emc.policy/images/mi.gif"/>
               <span tal:replace="node/Title">Selected Item Title</span>
               <span class="badge" tal:content="python:len(children)">12</span>              	 
         </a> 
@@ -51,7 +51,7 @@
 
 
         <tal:children condition="python: len(children) > 0">
-            <ul tal:attributes="class python:'collapse navTree navTreeLevel'+str(level);
+            <ul tal:attributes="class python:'collapse in navTree navTreeLevel'+str(level);
             	id python:item_id"
                 tal:condition="python: len(children) > 0 and show_children and bottomLevel and level < bottomLevel or True">
                 <span tal:replace="structure python:view.recurse(children=children, level=level+1, bottomLevel=bottomLevel)" />

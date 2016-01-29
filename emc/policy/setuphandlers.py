@@ -137,7 +137,7 @@ STRUCTURE = [
                      {
                       'type': 'emc.kb.kbfolder',
                       'title': u'资源库',
-                      'id': 'topic_folder',
+                      'id': 'resources_folder',
                       'description': u'存放各种类型文件的容器',
                       'layout': 'folder_contents',
                                            
