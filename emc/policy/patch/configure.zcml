@@ -17,7 +17,12 @@
       permission="zope.Public" />
       
   <include package="collective.monkeypatcher" />
-
+    <monkey:patch
+     description="patch i18njs view for zh"
+     class ="plone.app.content.browser.i18n.i18njs"
+     original="__call__"
+     replacement=".i18n.__call__"
+  /> 
 
 
     <monkey:patch
