@@ -99,4 +99,14 @@ class LogoViewlet(base):
 # 
 #         return {'portal': default_tab}
 
+class PathBarViewlet(ViewletBase):
+    index = ViewPageTemplateFile('templates/path_bar.pt')
 
+    def update(self):
+        super(PathBarViewlet, self).update()
+
+        self.is_rtl = self.portal_state.is_rtl()
+
+        breadcrumbs_view = getMultiAdapter((self.context, self.request),
+                                           name='breadcrumbs_view')
+        self.breadcrumbs = breadcrumbs_view.breadcrumbs()

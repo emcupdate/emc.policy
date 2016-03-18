@@ -7,6 +7,9 @@ from zope.interface import Interface
 from zExceptions import NotFound
 
 class Setlayout(BrowserView):
+    """
+    设置指定内容对象的视图名称，通过:contentobj@@set_layout?new_view_name形式来设置。
+    """
     
     implements(IPublishTraverse)      
 

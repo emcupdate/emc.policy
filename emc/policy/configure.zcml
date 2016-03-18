@@ -25,8 +25,12 @@
   /> 
 
    <include package=".browser" />
-  <include package=".portlets" />   
+   <include package=".portlets" />   
    <include package=".patch" />
+   <!-- cancel pas plugin 
+   <include package=".sqlpas" />  
+   -->
+      
 <!-- login redirection to workspace
 <subscriber
     for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"

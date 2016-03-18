@@ -12,7 +12,8 @@ class MainTemplate(BrowserView):
     ajax_template = ViewPageTemplateFile('templates/ajax_main_template.pt')
     main_template = ViewPageTemplateFile('templates/main_template.pt')
 
-    def __call__(self):
+   
+    def __call__(self):        
         return self.template()
 
     @property

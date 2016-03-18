@@ -43,24 +43,33 @@
       for="*"
       name="footer"
       permission="zope.Public"
- 		 layer="emc.theme.interfaces.IThemeSpecific"       
+ 	  layer="emc.theme.interfaces.IThemeSpecific"       
       template="templates/footer.pt"
       />      
     <!-- The logo -->
     <browser:viewlet
         name="plone.logo"
- 		   layer="emc.theme.interfaces.IThemeSpecific"        
+ 		layer="emc.theme.interfaces.IThemeSpecific"        
         manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
         class=".common.LogoViewlet"
         permission="zope2.View"
         />
+        
+    <!-- override The breadcrumbs -->
+    <browser:viewlet
+        name="plone.path_bar"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".common.PathBarViewlet"
+        layer="emc.theme.interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />        
     <!-- Override global sections viewlet -->
 
     <browser:viewlet
         name="plone.global_sections"
         manager="plone.app.layout.viewlets.interfaces.IMainNavigation"
         class=".dropdown.DropdownMenuViewlet"
- 		   layer="emc.theme.interfaces.IThemeSpecific" 
+ 		layer="emc.theme.interfaces.IThemeSpecific" 
         permission="zope2.View"
         />
 
