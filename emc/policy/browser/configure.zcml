@@ -3,7 +3,7 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:plone="http://namespaces.plone.org/plone"    
-    i18n_domain="emc.policy">
+    i18n_domain="plone">
 
  	<browser:resourceDirectory
   name="emc.policy"
@@ -47,6 +47,8 @@
  	layer="emc.theme.interfaces.IThemeSpecific"     
     template="templates/folder_contents.pt"
     permission="cmf.ListFolderContents"
+    menu="plone_displayviews"
+    title="Folder view"
     />
 
   <browser:page

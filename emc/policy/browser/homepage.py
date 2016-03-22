@@ -61,6 +61,7 @@ class search(ajaxsearch):
         keyword = (datadic['searchabletext']).strip()     
 
         origquery = searchview.getPathQuery()
+#         origquery['portal_type'] = ("File","Document")
         origquery['sort_on'] = sortcolumn  
         origquery['sort_order'] = sortdirection
                 
