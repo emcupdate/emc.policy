@@ -30,12 +30,20 @@ class SitePolicy(PloneSandboxLayer):
     
     def setUpZope(self, app, configurationContext):
         # Load ZCML
+        import plone.app.contenttypes
         import emc.policy
         import emc.theme
+        import emc.project
+        import emc.kb
         import emc.bokeh
+        import emc.memberArea
+        xmlconfig.file('configure.zcml', plone.app.contenttypes, context=configurationContext)
         xmlconfig.file('configure.zcml', emc.policy, context=configurationContext)
         xmlconfig.file('configure.zcml', emc.theme, context=configurationContext)
         xmlconfig.file('configure.zcml', emc.bokeh, context=configurationContext)
+        xmlconfig.file('configure.zcml', emc.kb, context=configurationContext)
+        xmlconfig.file('configure.zcml', emc.memberArea, context=configurationContext)
+        xmlconfig.file('configure.zcml', emc.project, context=configurationContext)
      
         # Install products that use an old-style initialize() function
 
@@ -51,6 +59,8 @@ class SitePolicy(PloneSandboxLayer):
         applyProfile(portal, 'emc.policy:default')
         applyProfile(portal, 'emc.theme:default')
         applyProfile(portal, 'emc.bokeh:default')
+        applyProfile(portal, 'emc.kb:default')
+        applyProfile(portal, 'emc.project:default')
 
 
 class IntegrationSitePolicy(SitePolicy):      
@@ -59,22 +69,15 @@ class IntegrationSitePolicy(SitePolicy):
         applyProfile(portal, 'emc.policy:default')
         applyProfile(portal, 'emc.theme:default')
         applyProfile(portal, 'emc.bokeh:default')
+        applyProfile(portal, 'emc.kb:default')
+        applyProfile(portal, 'emc.project:default')
 #        portal = self.layer['portal']
         #make global request work
         from zope.globalrequest import setRequest
         setRequest(portal.REQUEST)
         # login doesn't work so we need to call z2.login directly
         z2.login(portal.__parent__.acl_users, SITE_OWNER_NAME)
-#        setRoles(portal, TEST_USER_ID, ('Manager',))
-#        login(portal, TEST_USER_NAME)
-#        portal.invokeFactory('dexterity.membrane.memberfolder', 'memberfolder1')
-#           # 社团经手人账号     
-#     
-#
-#        data = getFile('demo.txt').read()
-#        item = portal['orgnizationfolder1']['orgnization1']['survey1']
-#        item.image = NamedImage(data, 'image/gif', u'image.gif')
-#        item.report = namedfile.NamedBlobFile(data,filename=u"demo.txt")               
+            
         self.portal = portal 
 
 POLICY_FIXTURE = SitePolicy()
