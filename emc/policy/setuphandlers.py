@@ -34,45 +34,45 @@ STRUCTURE = [
                           'title': u'主板',
                           'id': 'motherboard',
                           'description': u'主板组',
-                          'security_level':'public',
-                          'task_type':'train',
+                          
+                          
                           'layout': 'ajax_listings',                          
                                              } ,  
                          {'type': 'emc.project.team',
                           'title': u'显卡',
                           'id': 'displaycard',
                           'description': u'显卡',
-                          'security_level':'public',
-                          'task_type':'train',
+                          
+                          
                           'layout': 'ajax_listings',
                            'children': [
-                                        {'type': 'emc.project.analysisDoc',
+                                        {'type': 'emc.project.doc',
                                          'title': u'显卡分析',
                                          'id': 'analysis',
                                          'description': u'显卡分析文档',
-                                         'security_level':'public',
-                                         'task_type':'train',                          
+                                         
+                                                                   
                                                                              } ,  
-                                        {'type': 'emc.project.designDoc',
+                                        {'type': 'emc.project.doc',
                                          'title': u'显卡设计',
                                          'id': 'design',
                                          'description': u'显卡设计文档',
-                                         'security_level':'public',
-                                         'task_type':'train',
+                                         
+                                         
                                                                          } ,    
-                                        {'type': 'emc.project.auditDoc',
+                                        {'type': 'emc.project.doc',
                                          'title': u'显卡审核',
                                          'id': 'audit',
                                          'description': u'显卡审核文档',
-                                         'security_level':'public',
-                                         'task_type':'train',
+                                         
+                                         
                                                                          } ,  
-                                        {'type': 'emc.project.diagnoseDoc',
+                                        {'type': 'emc.project.doc',
                                          'title': u'故障诊断',
                                          'id': 'diagnose',
                                          'description': u'故障诊断文档',
-                                         'security_level':'public',
-                                         'task_type':'train',
+                                         
+                                         
                                                                          } ,                                                                                       
                          
                                                                         ]
@@ -81,37 +81,37 @@ STRUCTURE = [
                           'title': u'网卡',
                           'id': 'network',
                           'description': u'网卡',
-                          'security_level':'public',
-                          'task_type':'train',
+                          
+                          
                           'layout': 'ajax_listings',
                            'children': [
-                                        {'type': 'emc.project.analysisDoc',
+                                        {'type': 'emc.project.doc',
                                          'title': u'网卡分析',
                                          'id': 'analysis',
                                          'description': u'网卡分析文档',
-                                         'security_level':'public',
-                                         'task_type':'train',                          
+                                         
+                                                                   
                                                                              } ,  
-                                        {'type': 'emc.project.designDoc',
+                                        {'type': 'emc.project.doc',
                                          'title': u'网卡设计',
                                          'id': 'design',
                                          'description': u'网卡设计文档',
-                                         'security_level':'public',
-                                         'task_type':'train',
+                                         
+                                         
                                                                          } ,    
-                                        {'type': 'emc.project.auditDoc',
+                                        {'type': 'emc.project.doc',
                                          'title': u'网卡审核',
                                          'id': 'audit',
                                          'description': u'网卡审核文档',
-                                         'security_level':'public',
-                                         'task_type':'train',
+                                         
+                                         
                                                                          } ,  
-                                        {'type': 'emc.project.diagnoseDoc',
+                                        {'type': 'emc.project.doc',
                                          'title': u'故障诊断',
                                          'id': 'diagnose',
                                          'description': u'故障诊断文档',
-                                         'security_level':'public',
-                                         'task_type':'train',
+                                         
+                                         
                                                                          } ,                                                                                       
                          
                                                                         ]
