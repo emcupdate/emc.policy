@@ -10,6 +10,17 @@
   directory="static" />
 
    <browser:page
+      name="file_review"
+      for="plone.app.contenttypes.interfaces.IFile"
+      class=".file.FileView"
+      template="templates/file.pt"
+      layer="emc.theme.interfaces.IThemeSpecific" 
+      permission="zope2.View"
+      menu="plone_displayviews"
+      title="File review"
+      />  
+   
+   <browser:page
       for="Products.CMFCore.interfaces.ISiteRoot"
       name="index.html"
       template="templates/ajax_listings_homepage.pt"
