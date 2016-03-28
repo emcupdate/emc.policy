@@ -16,3 +16,6 @@ msgstr ""
 
 msgid "File review"
 msgstr ""
+
+msgid "External Edit"
+msgstr ""

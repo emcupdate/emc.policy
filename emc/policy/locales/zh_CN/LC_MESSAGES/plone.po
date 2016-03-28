@@ -107,3 +107,6 @@ msgstr "版权"
 msgid "File review"
 msgstr "文件预览"
 
+msgid "External Edit"
+msgstr "外部编辑"
+
