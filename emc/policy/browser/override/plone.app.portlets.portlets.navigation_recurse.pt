@@ -31,7 +31,6 @@
               	role="button" class="collapse-control"              	 
               	data-toggle="collapse" href="#collapse"
               	tal:attributes="href python:'#' + item_id;
-              	data-target python:use_remote_url and item_remote_url or item_url;
               	aria-controls python:item_id;
               	class string:collapse-control $item_class${li_class}${li_extr_class}${li_folder_class} $item_type_class" 
               	aria-expanded="true" aria-controls="collapse">
