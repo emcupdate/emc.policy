@@ -30,6 +30,32 @@
      class ="plone.app.blob.field.BlobWrapper"
      original="index_html"
      replacement=".filedownload.index_html"
-  /> 
+  />
+    <monkey:patch
+     description="patch Products ExternalEditor for file external edit"
+     class ="Products.ExternalEditor.ExternalEditor.ExternalEditor"
+     original="index_html"
+     replacement=".ExternalEditor.index_html"
+  />  
+    <monkey:patch
+     description="patch dexterity filepresentation for file external edit"
+     class ="plone.dexterity.filerepresentation.DefaultReadFile"
+     original="_getStream"
+     replacement=".filerepresentation._getStream"
+  />
 
+    <monkey:patch
+     description="patch dexterity filepresentation for file external edit"
+     class ="plone.dexterity.filerepresentation.DefaultReadFile"
+     original="_getMessage"
+     replacement=".filerepresentation._getMessage"
+  />
+
+    <monkey:patch
+     description="patch plone rfc822 _utils for file external edit"
+     module ="plone.rfc822._utils"
+     original="constructMessage"
+     replacement="._utils.constructMessage"
+  /> 
+  
 </configure>

@@ -56,7 +56,7 @@
 
   <div tal:condition="python: content_type.startswith('text')">
     <h2 i18n:translate="heading_file_contents">File contents</h2>
-    <pre tal:content="context/file/data|nothing" />
+    <pre tal:content="python:view.txtgoodcode()" />
   </div>
 
 </metal:block>

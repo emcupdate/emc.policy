@@ -23,4 +23,17 @@ class FileView(Utils):
     def isEditable(self):
         sm = getSecurityManager()
         return sm.checkPermission(ModifyPortalContent, self.context)
+    
+    def txtgoodcode(self):
+        
+        data = self.context.file.data
+        sourceFormats = ['cp936','utf-8']
+        for format in sourceFormats:
+            try:
+#                 import pdb
+#                 pdb.set_trace()
+                return data.decode(format).encode('utf-8')
+            except:
+                pass
+                
             
