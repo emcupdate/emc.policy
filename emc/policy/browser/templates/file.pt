@@ -54,7 +54,7 @@
     <source tal:attributes="src download_url; type content_type"></source>
   </audio>
 
-  <div tal:condition="python: content_type.startswith('text')">
+  <div class="preview" tal:condition="python: content_type.startswith('text')">
     <h2 i18n:translate="heading_file_contents">File contents</h2>
     <pre tal:content="python:view.txtgoodcode()" />
   </div>
