@@ -110,3 +110,9 @@ msgstr "文件预览"
 msgid "External Edit"
 msgstr "外部编辑"
 
+msgid "Plot view"
+msgstr "图形输出"
+
+msgid "Source code"
+msgstr "图形参数"
+

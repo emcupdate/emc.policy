@@ -19,3 +19,9 @@ msgstr ""
 
 msgid "External Edit"
 msgstr ""
+
+msgid "Plot view"
+msgstr ""
+
+msgid "Source code"
+msgstr ""
