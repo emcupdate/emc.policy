@@ -34,16 +34,20 @@
 	</div>
 </div>
 </div>
-  <p>
+  <p tal:define="size python:view.getSize()">
     <a tal:attributes="href download_url">
       <img tal:attributes="src view/get_mimetype_icon;
                            alt content_type;" border="0" />
       <tal:name tal:content="context/file/filename" >Filename</tal:name>
     </a>
     <span class="discreet"
-        tal:define="size context/file/getSize;
-                    kb python:size/1024">
+    	tal:condition="python:view.isKb()"
+        tal:define="kb python:size/1024">
       &mdash; <span tal:replace="kb" /> KB</span>
+    <span class="discreet"
+    	tal:condition="python:not view.isKb()"
+        tal:define="b python:size%1024">
+      &mdash; <span tal:replace="b" /> B</span>      
   </p>
 
   <video tal:condition="view/is_videotype" controls="controls">

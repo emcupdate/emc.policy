@@ -22,6 +22,19 @@ class FileView(Utils):
         ct = self.context.file.contentType
         return 'video/' in ct
 
+    def getSize(self):
+        return self.context.file.getSize()
+    
+    def isKb(self):
+#         import pdb
+#         pdb.set_trace()
+        size = self.getSize()
+        if size > 1024:
+            return True
+        else:
+            return False
+        
+        
     def is_audiotype(self):
         ct = self.context.file.contentType
         return 'audio/' in ct
