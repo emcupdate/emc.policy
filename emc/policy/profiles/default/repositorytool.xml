@@ -21,6 +21,10 @@
             <policy name="at_edit_autoversion"/>
             <policy name="version_on_revert"/>
         </type>
+        <type name="emc.bokeh.codefile">
+            <policy name="at_edit_autoversion"/>
+            <policy name="version_on_revert"/>
+        </type>        
         <type name="emc.project.team">
             <policy name="at_edit_autoversion"/>
             <policy name="version_on_revert"/>
