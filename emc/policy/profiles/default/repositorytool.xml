@@ -4,7 +4,11 @@
         <type name="File">
             <policy name="at_edit_autoversion"/>
             <policy name="version_on_revert"/>
-        </type>    	
+        </type>
+        <type name="Image">
+            <policy name="at_edit_autoversion"/>
+            <policy name="version_on_revert"/>
+        </type>            	
         <type name="emc.project.project">
             <policy name="at_edit_autoversion"/>
             <policy name="version_on_revert"/>
