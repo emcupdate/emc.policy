@@ -25,3 +25,10 @@ msgstr ""
 
 msgid "Source code"
 msgstr ""
+
+# plone.app.versioningbehavior/behaviors.py
+msgid "label_change_note"
+msgstr ""
+
+msgid "help_change_note"
+msgstr ""

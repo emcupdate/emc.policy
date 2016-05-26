@@ -116,3 +116,14 @@ msgstr "图形输出"
 msgid "Source code"
 msgstr "图形参数"
 
+msgid "label_change_note"
+msgstr "修改备注"
+
+msgid "help_change_note"
+msgstr "为本次更改，输入一个备注信息"
+
+#. Default: "Default"
+#: plone.dexterity/browser/base.py:16
+msgid "label_schema_default"
+msgstr "缺省"
+
