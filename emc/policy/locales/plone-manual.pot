@@ -32,3 +32,10 @@ msgstr ""
 
 msgid "help_change_note"
 msgstr ""
+
+#: ./browser/contents/__init__.py:203
+msgid "Title"
+msgstr ""
+
+msgid "listingheader_title"
+msgstr ""

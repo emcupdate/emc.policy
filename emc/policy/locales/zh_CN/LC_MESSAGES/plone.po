@@ -127,3 +127,10 @@ msgstr "为本次更改，输入一个备注信息"
 msgid "label_schema_default"
 msgstr "缺省"
 
+#: ./browser/contents/__init__.py:203
+msgid "Title"
+msgstr "标题"
+
+msgid "listingheader_title"
+msgstr "标题"
+
