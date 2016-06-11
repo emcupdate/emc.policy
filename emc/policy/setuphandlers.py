@@ -156,6 +156,7 @@ def post_install(context):
     if isNotCurrentProfile(context):
         return
     # Do something during the installation of this package
+    return
     portal = api.portal.get()
     members = portal.get('events', None)
     if members is not None:
