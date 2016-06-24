@@ -29,9 +29,27 @@ from plone.app.layout.viewlets.common import LogoViewlet as base
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.protect.utils import addTokenToUrl
 
+class SearchBoxViewlet(ViewletBase):
+    index = ViewPageTemplateFile('templates/searchbox.pt')
 
+    def update(self):
+        super(SearchBoxViewlet, self).update()
 
+        context_state = getMultiAdapter((self.context, self.request),
+                                        name=u'plone_context_state')
 
+        registry = getUtility(IRegistry)
+        search_settings = registry.forInterface(ISearchSchema, prefix='plone')
+        self.livesearch = search_settings.enable_livesearch
+
+        folder = context_state.folder()
+        self.folder_path = '/'.join(folder.getPhysicalPath())
+
+    @memoize
+    def data_pat_livesearch(self):
+        navroot = self.navigation_root_url
+        out = "ajaxUrl:%s/@@ajax-search;minimumInputLength:2" % navroot
+        return out
 
 class LogoViewlet(base):
     index = ViewPageTemplateFile('templates/logo.pt')

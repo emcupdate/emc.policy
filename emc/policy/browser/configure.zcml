@@ -86,6 +86,15 @@
  	  layer="emc.theme.interfaces.IThemeSpecific"       
       template="templates/footer.pt"
       />      
+    <!-- The search box -->
+    <browser:viewlet
+        name="plone.searchbox"
+        layer="emc.theme.interfaces.IThemeSpecific"        
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".common.SearchBoxViewlet"
+        permission="zope2.View"
+        />    
+    
     <!-- The logo -->
     <browser:viewlet
         name="plone.logo"
