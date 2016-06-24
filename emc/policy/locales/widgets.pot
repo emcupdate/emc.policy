@@ -782,6 +782,14 @@ msgid "External"
 msgstr ""
 
 #: ./patterns/tinymce/pattern.js
+msgid "Anchor"
+msgstr ""
+
+#: ./patterns/tinymce/pattern.js
+msgid "Select a anchor"
+msgstr ""
+
+#: ./patterns/tinymce/pattern.js
 msgid "Target"
 msgstr ""
 
@@ -791,10 +799,6 @@ msgstr ""
 
 #: ./patterns/tinymce/pattern.js
 msgid "Email Address"
-msgstr ""
-
-#: ./patterns/tinymce/pattern.js
-msgid "Anchor"
 msgstr ""
 
 #: ./patterns/tinymce/pattern.js
