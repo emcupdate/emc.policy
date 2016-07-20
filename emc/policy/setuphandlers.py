@@ -172,7 +172,6 @@ def post_install(context):
     pm = api.portal.get_tool(name='portal_membership')
     current = api.user.get_current()
     try:
-
         pm.memberareaCreationFlag = True
         pm.createMemberarea(member_id= current.id)      
         event.notify(MemberAreaCreatedEvent(current))
