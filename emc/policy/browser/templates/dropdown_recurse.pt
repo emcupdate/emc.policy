@@ -43,9 +43,9 @@
             pm = api.portal.get_tool(name='portal_membership')
             userid = pm.getAuthenticatedMember().getId()
             root = pm.getHomeFolder(userid)
-            total = len(api.content.find(context=root, portal_type='emc.memberArea.todoitem'))
+            total = len(api.content.find(context=root,review_state = 'unprocessed',portal_type='emc.memberArea.todoitem'))
             ?>
-            <span class="badge" tal:content="total">12</span>
+            <span id="todo" class="badge" tal:content="total">12</span>
         </a>        
 
         <ul tal:attributes="class python:'submenu navTree navTreeLevel'+str(level)"
