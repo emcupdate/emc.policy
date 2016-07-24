@@ -39,3 +39,55 @@ msgstr ""
 
 msgid "listingheader_title"
 msgstr ""
+
+#project doc workflow
+msgid "pendingview"
+msgstr ""
+
+msgid "pendingprocess"
+msgstr ""
+
+msgid "Pending view"
+msgstr ""
+
+msgid "Pending process"
+msgstr ""
+
+msgid "Feedback"
+msgstr ""
+
+msgid "Publish"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+# emc memberArea todoitem workflow
+msgid "Unprocessed"
+msgstr ""
+
+msgid "Processed"
+msgstr ""
+
+msgid "Mark as processed"
+msgstr ""
+
+msgid "Mark as unprocessed"
+msgstr ""
+
+# emc memberArea message workflow
+msgid "Unreaded"
+msgstr ""
+
+msgid "Readed"
+msgstr ""
+
+msgid "Mark as readed"
+msgstr ""
+
+msgid "Mark as unreaded"
+msgstr ""
+
