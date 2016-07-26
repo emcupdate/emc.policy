@@ -91,3 +91,6 @@ msgstr ""
 msgid "Mark as unreaded"
 msgstr ""
 
+# emc.project view
+msgid "system Ajax view"
+msgstr ""

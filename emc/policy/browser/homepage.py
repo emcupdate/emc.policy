@@ -9,14 +9,14 @@ from emc.project.content.project import IProject
 from emc.project.content.projectfolder import IProjectFolder
 
 from emc.theme.interfaces import IThemeSpecific
-from emc.project.browser.ajax_listing import ajaxListingView,ajaxsearch
+from emc.project.browser.ajax_listing import sysAjaxListingView,ajaxsearch
 # from emc.memberArea.browser.workspace import WorkspaceView
 from emc.kb.contents.kbfolder import Ikbfolder
 
 
 # grok.templatedir('templates')
 
-class FrontpageView(ajaxListingView):
+class FrontpageView(sysAjaxListingView):
      
 #     grok.context(ISiteRoot)
 #     grok.template('ajax_listings_homepage')
@@ -43,13 +43,12 @@ class FrontpageView(ajaxListingView):
         
 class search(ajaxsearch):
     
+    
     def render(self):    
 #        self.portal_state = getMultiAdapter((self.context, self.request), name=u"plone_portal_state")
         searchview = getMultiAdapter((self.context, self.request),name=u"index.html")        
  # datadic receive front ajax post data       
         datadic = self.request.form
-#         import pdb
-#         pdb.set_trace()
         start = int(datadic['start']) # batch search start position
         datekey = int(datadic['datetype'])  # 对应 最近一周，一月，一年……
         size = int(datadic['size'])      # batch search size          
@@ -61,7 +60,6 @@ class search(ajaxsearch):
         keyword = (datadic['searchabletext']).strip()     
 
         origquery = searchview.getPathQuery()
-#         origquery['portal_type'] = ("File","Document")
         origquery['sort_on'] = sortcolumn  
         origquery['sort_order'] = sortdirection
                 
@@ -75,21 +73,25 @@ class search(ajaxsearch):
             origquery['created'] = self.Datecondition(datekey)           
 #         if tasktypekey != 0:
 #             origquery['task_type'] = searchview.getTaskType(tasktypekey)
+
+        # remove repeat values 
+        tag = tag.split(',')
+        tag = set(tag)
+        tag = list(tag)
         all = u"所有".encode("utf-8")
-#         import pdb
-#         pdb.set_trace()
-        if tag !=all and tag !="0":
-#             import pdb
-#             pdb.set_trace()
-            tag = tag.split(',')
-            # remove repeat values            
-            tag = set(tag)            
-            tag = list(tag)
-            if all in tag:tag.remove(all)
-            if '0' in tag and len(tag) > 1:
-                tag.remove('0')
-                rule = {"query":tag,"operator":"and"}
-                origquery['Subject'] = rule
+        unclass = u"未分类".encode("utf-8")        
+# filter contain "u'所有'"
+        tag = filter(lambda x: all not in x, tag)
+# recover un-category tag (remove:u"未分类-")
+        def recovery(value):
+            if unclass not in value:return value
+            return value.split('-')[1]
+            
+        tag = map(recovery,tag)        
+        if '0' in tag and len(tag) > 1:
+            tag.remove('0')
+            rule = {"query":tag,"operator":"and"}
+            origquery['Subject'] = rule
                       
 #totalquery  search all 
         totalquery = origquery.copy()
@@ -107,5 +109,5 @@ class search(ajaxsearch):
 #call output function        
         data = self.output(start,size,totalnum, braindata)
         self.request.response.setHeader('Content-Type', 'application/json')
-        return json.dumps(data)      
+        return json.dumps(data)     
             
