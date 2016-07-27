@@ -54,13 +54,22 @@
  	  layer="emc.theme.interfaces.IThemeSpecific"       
       permission="zope.Public"
       />
+<!-- manage tools-->      
    <browser:page
       for="*"
       name="set_layout"
       class=".manage_tools.Setlayout"
  	  layer="emc.theme.interfaces.IThemeSpecific"       
       permission="cmf.ManagePortal"
+      />
+   <browser:page
+      for="*"
+      name="mark_interface"
+      class=".manage_tools.addMarkInterface"
+ 	  layer="emc.theme.interfaces.IThemeSpecific"       
+      permission="cmf.ManagePortal"
       />      
+            
   <browser:page
     for="Products.CMFCore.interfaces._content.IFolderish"
     class="plone.app.content.browser.contents.FolderContentsView"
