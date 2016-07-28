@@ -23,13 +23,18 @@
      original="__call__"
      replacement=".i18n.__call__"
   /> 
-
-
     <monkey:patch
      description="patch file field class for file download"
      class ="plone.app.blob.field.BlobWrapper"
      original="index_html"
      replacement=".filedownload.index_html"
+  />
+
+    <monkey:patch
+     description="widget class for report field"
+     class ="plone.app.z3cform.widget.RichTextWidget"
+     original="_base_args"
+     replacement=".widget._base_args"
   />
     <monkey:patch
      description="patch Products ExternalEditor for file external edit"
