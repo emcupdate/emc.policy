@@ -142,22 +142,31 @@ msgid "pendingprocess"
 msgstr "待反馈"
 
 msgid "Pending view"
-msgstr "下发查看"
+msgstr "下发阅读内容"
 
 msgid "Pending process"
-msgstr "下发并要求反馈"
+msgstr "下发内容需反馈"
 
 msgid "Feedback"
-msgstr "反馈并发布"
+msgstr "提交反馈"
 
 msgid "Publish"
 msgstr "发布"
 
-msgid "Public"
-msgstr "发布"
+msgid "Retract to draft"
+msgstr "收回到草稿"
 
 msgid "Draft"
 msgstr "草案"
+
+msgid "Read for feedback"
+msgstr "读后反馈"
+
+msgid "Edit for feedback"
+msgstr "编辑后反馈"
+
+msgid "Review"
+msgstr "审核"
 
 # emc memberArea todoitem workflow
 msgid "Unprocessed"

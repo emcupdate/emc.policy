@@ -65,6 +65,18 @@ msgstr ""
 msgid "Draft"
 msgstr ""
 
+msgid "Read for feedback"
+msgstr ""
+
+msgid "Edit for feedback"
+msgstr ""
+
+msgid "Review"
+msgstr ""
+
+msgid "Retract to draft"
+msgstr ""
+
 # emc memberArea todoitem workflow
 msgid "Unprocessed"
 msgstr ""

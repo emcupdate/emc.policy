@@ -55,12 +55,7 @@
       <element>emc.project.projectFolder</element>
       <element>emc.project.project</element>
       <element>emc.project.team</element>
-      <element>emc.project.analysisDoc</element>
-      <element>emc.project.auditDoc</element> 
-      <element>emc.project.diagnoseDoc</element>
-      <element>emc.project.designDoc</element>
-      <element>emc.memberArea.workspace</element>
-      <element>emc.memberArea.messagebox</element>
+      <element>emc.memberArea.workspace</element>      
       <element>emc.memberArea.inputbox</element>
       <element>emc.memberArea.outputbox</element>
       <element>emc.memberArea.message</element>
