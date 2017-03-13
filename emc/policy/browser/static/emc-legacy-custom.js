@@ -6,6 +6,7 @@ $(document).ready(function(){
 $('.collapse-control').on('click', function () {
 var willshow = $(this).find('.hidden');
 var willhide = $(this).find('.shown');
+var collapse_handler = $(this).attr('href');
  willshow.removeClass('hidden').addClass('shown');
  willhide.removeClass('shown').addClass('hidden');
 });

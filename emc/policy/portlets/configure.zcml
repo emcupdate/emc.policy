@@ -6,11 +6,16 @@
     <plone:portlet
         name="emc.portlets.Navigation"
         interface=".navigation.IEmcNavigationPortlet"
-        assignment="plone.app.portlets.portlets.navigation.Assignment"
+        assignment=".navigation.Assignment"
         renderer=".navigation.Renderer"
-        addview="plone.app.portlets.portlets.navigation.AddForm"
-        editview="plone.app.portlets.portlets.navigation.EditForm"
+        addview=".navigation.AddForm"
+        editview=".navigation.EditForm"
         />
 
-
+<adapter factory=".navigation.CustomNavtreeStrategy"
+		 provides=".navigation.ICustomNavtreeStrategy"
+ />
+ <adapter factory=".navigation.QueryBuilder"
+		 provides=".navigation.ICustomNavigationQueryBuilder"
+ />
 </configure>
