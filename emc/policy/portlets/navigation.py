@@ -186,8 +186,8 @@ class QueryBuilder(object):
         if currentPath != rootPath and not currentPath.startswith(rootPath + '/'):
             query['path'] = {'query': rootPath, 'depth': 1}
         else:
-#             query['path'] = {'query': currentPath}
-            query['path'] = {'query': currentPath, 'navtree': 1}
+            query['path'] = {'query': rootPath}
+#             query['path'] = {'query': currentPath, 'navtree': 1}
 
         topLevel = portlet.topLevel
         if topLevel and topLevel > 0:
