@@ -37,6 +37,19 @@ var willhide = $(this).find('.shown');
  willhide.removeClass('shown').addClass('hidden');
  return false;
 });
+$('.nocollapse').on('click', function () {
+var url = $(this).attr('href');	
+// if current view is ajax_listings?
+if ($('#searchResultDiv') !== null || $('#searchResultDiv') !==undefined){	
+	$("#objid").attr("value", $(this).attr('data-id'));
+	searchEvent();
+}
+else {
+	url = url + '/@@ajax_listings';
+	window.location.href = url;
+}	
+ return false;	
+});
 $('a[href^="http://mw4024.wicp.net:8089/"]').attr('target','_blank').attr('class','outputlink');
 });
 });
