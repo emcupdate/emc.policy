@@ -1,6 +1,7 @@
 from plone import api
 from Acquisition import aq_inner, aq_base, aq_parent
 from ComputedAttribute import ComputedAttribute
+from types import StringType
 from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.navigation.interfaces import INavtreeStrategy

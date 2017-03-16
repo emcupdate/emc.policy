@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*-
 import unittest as unittest
 
 from plone.app.testing import TEST_USER_ID
@@ -101,6 +102,19 @@ class TestRenderer(unittest.TestCase):
  
         return getMultiAdapter((context, request, view, manager, assignment), IPortletRenderer)
      
+    def testPortletsTitle(self):
+        """If portlet's name is not explicitely specified we show
+           default fallback 'Navigation', translate it and hide it
+           with CSS."""
+        login(self.portal, "member1")
+        view = self.renderer(self.portal)
+        view.getNavTree()
+        self.assertEqual(view.title(), "Navigation")
+        self.assertFalse(view.hasName())
+        view.data.name = u'项目导航'
+        self.assertEqual(view.title(), u"项目导航")
+        self.assertTrue(view.hasName())
+    
     def test_anonymous(self):
         portal = self.layer['portal']
          
@@ -115,7 +129,9 @@ class TestRenderer(unittest.TestCase):
         login(portal, "member1")
         member = self.membership.getAuthenticatedMember()
 
-        r = self.renderer(context=portal, assignment=navigation.Assignment(topLevel=0))
+        r = self.renderer(
+                          context=portal, assignment=navigation.Assignment(topLevel=0,
+                                                                           root_uid=portal['folder1'].UID()))
         self.assertTrue(r.available)
         logout()
         login(portal, "member2")
@@ -123,27 +139,5 @@ class TestRenderer(unittest.TestCase):
         pdb.set_trace()        
         r = self.renderer(context=portal, assignment=navigation.Assignment(topLevel=0))
         self.assertFalse(r.available)        
-#         self.assertEqual(len(list(r.cinemas())), 0)
-         
-    def test_single(self):
-        portal = self.layer['portal']
-         
-        member = self.membership.getAuthenticatedMember()
+     
 
-        r = self.renderer(context=portal, assignment=navigation.Assignment())
-        self.assertTrue(r.available)
-        cinemaUrls = [c['url'] for c in r.cinemas()]
-        self.assertEqual(len(cinemaUrls), 1)
-        self.assertEqual(cinemaUrls[0], portal.cinemas.c1.absolute_url())
- 
-    def test_multiple(self):
-        portal = self.layer['portal']
-         
-        member = self.membership.getAuthenticatedMember()
-        member.setProperties(homeCinemas=['C1', 'C2'])
-        r = self.renderer(context=portal, assignment=navigation.Assignment())
-        self.assertTrue(r.available)
-        cinemaUrls = [c['url'] for c in r.cinemas()]
-        self.assertEqual(len(cinemaUrls), 2)
-        self.assertEqual(cinemaUrls[0], portal.cinemas.c1.absolute_url())
-        self.assertEqual(cinemaUrls[1], portal.cinemas.c2.absolute_url())
