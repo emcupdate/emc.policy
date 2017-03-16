@@ -27,6 +27,8 @@
    <include package=".browser" />
    <include package=".portlets" />   
    <include package=".patch" />
+
+
    <!-- cancel pas plugin 
    <include package=".sqlpas" />  
    -->
@@ -44,5 +46,11 @@
         handler=".setuphandlers.post_install">
         <depends name='typeinfo' />
     </genericsetup:importStep>
-    
+  <genericsetup:upgradeStep
+      title="Add navigator portlet to project folder"
+      description="Add navigator portlet to project folder"
+      source="1001"
+      destination="1002"
+      handler="emc.policy.migration.add_navigator_portlet"
+      profile="emc.project:default"/>    
 </configure>
