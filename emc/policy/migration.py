@@ -26,7 +26,7 @@ def add_navigator_portlet(context):
     
     # We then create the assignment and put it in the assignment manager,
     # using the default name-chooser to pick a suitable name for us.
-    assignment = navigation.Assignment(name=u"项目导航",root_uid=obj.UID(),topLevel=0)
+    assignment = navigation.Assignment(name=u"项目管理",root_uid=obj.UID(),topLevel=0)
     chooser = INameChooser(manager)
     manager[chooser.chooseName(None, assignment)] = assignment 
     

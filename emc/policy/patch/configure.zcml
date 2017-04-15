@@ -17,6 +17,14 @@
       permission="zope.Public" />
       
   <include package="collective.monkeypatcher" />
+  <!--
+    <monkey:patch
+     description="patch navtree show children function"
+     class ="Products.CMFPlone.browser.navtree.SitemapNavtreeStrategy"
+     original="showChildrenOf"
+     replacement=".navtree.showChildrenOf"
+  />
+    -->
     <monkey:patch
      description="patch i18njs view for zh"
      class ="plone.app.content.browser.i18n.i18njs"
