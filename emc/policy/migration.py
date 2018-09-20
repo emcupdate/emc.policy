@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from plone.app.upgrade.utils import loadMigrationProfile
 from Products.CMFCore.utils import getToolByName
 from zope.container.interfaces import INameChooser
 from zope.component import getUtility
@@ -28,7 +29,10 @@ def add_navigator_portlet(context):
     # using the default name-chooser to pick a suitable name for us.
     assignment = navigation.Assignment(name=u"项目管理",root_uid=obj.UID(),topLevel=0)
     chooser = INameChooser(manager)
-    manager[chooser.chooseName(None, assignment)] = assignment 
+    manager[chooser.chooseName(None, assignment)] = assignment
+
+    loadMigrationProfile(context, 'profile-emc.policy:to507')
+ 
     
 
 

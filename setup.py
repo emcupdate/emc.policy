@@ -27,6 +27,7 @@ setup(name='emc.policy',
           'setuptools',
           'Products.CMFPlone',
           'z3c.jbot',
+          'z3c.unconfigure',
           'collective.wtf',
           'collective.monkeypatcher',
                     

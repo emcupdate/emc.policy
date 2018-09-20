@@ -16,6 +16,13 @@
       description="Installs the emc.policy package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+  <genericsetup:registerProfile
+      name="customnav"
+      title="custom project tree navigator portlet"
+      description=""
+      directory="profiles/customnav"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />      
   <!-- -*- extra stuff goes here -*- -->
     <monkey:patch
      description="patch when create Member area function fire a createMemberArea event"
@@ -38,7 +45,16 @@
     for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
     handler=".subscriber.userLoginedIn"
     />   
-    -->
+        -->
+<subscriber
+    for="emc.policy.interfaces.IDeleteMemberEvent"
+    handler=".subscriber.DeleteMemberEventHandler"
+    />
+
+<subscriber
+    for="Products.PluggableAuthService.interfaces.events.IPrincipalDeletedEvent"
+    handler=".subscriber.PrincipalDeletedHandler"
+    />        
     <genericsetup:importStep
         name="emc.policy-postInstall"
         title="emc.policy post_install import step"

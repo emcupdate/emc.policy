@@ -4,6 +4,20 @@ from zope.site.hooks import getSite
 from Products.CMFCore.utils import getToolByName
 from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
 
+def DeleteMemberEventHandler(event):
+    """the system administrator delete specify user handler"""
+    import pdb
+    pdb.set_trace()    
+    print event.adminid
+    
+def PrincipalDeletedHandler(event):
+    """the pluggableAuthService delete member event's handler"""
+    
+    import pdb
+    pdb.set_trace()
+    print event.principal
+    
+
 def userLoginedIn(event):
     """Redirects  logged in users to getting started wizard"""  
 
