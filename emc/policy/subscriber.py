@@ -6,15 +6,22 @@ from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
 
 def DeleteMemberEventHandler(event):
     """the system administrator delete specify user handler"""
-    import pdb
-    pdb.set_trace()    
-    print event.adminid
+    from emc.kb.interfaces import IAdminLogLocator
+    from zope.component import getUtility
+    
+    values = {'adminid':event.adminid,'userid':event.userid,'datetime':event.datetime,
+              'ip':event.ip,'type':0,'level':4,'result':1,'description':u''}                
+    values['description'] = u"管理员%s删除了%s" % (event.adminid,event.userid)
+   
+    locator = getUtility(IAdminLogLocator)
+    locator.add(values)
+    
     
 def PrincipalDeletedHandler(event):
     """the pluggableAuthService delete member event's handler"""
     
-    import pdb
-    pdb.set_trace()
+#     import pdb
+#     pdb.set_trace()
     print event.principal
     
 
