@@ -18,7 +18,14 @@
       class=".overview.OverviewControlPanel"
       permission="plone.app.controlpanel.Overview"
       />
- 
+  <browser:page
+      name="usergroup-userprefs"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      layer="emc.theme.interfaces.IThemeSpecific"
+      class=".usergroups_usersoverview.UsersOverviewControlPanel"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      template="templates/usergroups_usersoverview.pt"
+      /> 
    <browser:page
       name="file_review"
       for="plone.app.contenttypes.interfaces.IFile"
