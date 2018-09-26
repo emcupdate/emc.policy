@@ -11,19 +11,34 @@ def DeleteMemberEventHandler(event):
     
     values = {'adminid':event.adminid,'userid':event.userid,'datetime':event.datetime,
               'ip':event.ip,'type':0,'level':4,'result':1,'description':u''}                
-    values['description'] = u"管理员%s删除了%s" % (event.adminid,event.userid)
-   
+    values['description'] = u"管理员%s删除了%s" % (event.adminid,event.userid)  
     locator = getUtility(IAdminLogLocator)
     locator.add(values)
     
+def CreateMemberEventHandler(event):
+    """the system administrator create specify user handler"""
+    from emc.kb.interfaces import IAdminLogLocator
+    from zope.component import getUtility
     
-def PrincipalDeletedHandler(event):
-    """the pluggableAuthService delete member event's handler"""
+    values = {'adminid':event.adminid,'userid':event.userid,'datetime':event.datetime,
+              'ip':event.ip,'type':0,'level':4,'result':1,'description':u''}                
+    values['description'] = u"管理员%s创建了%s%s" % (event.adminid,event.userid,event.description)  
+    locator = getUtility(IAdminLogLocator)
+    locator.add(values)
     
-#     import pdb
-#     pdb.set_trace()
-    print event.principal
+def ChangeMemberEventHandler(event):
+    """the system administrator change specify user handler"""
+    from emc.kb.interfaces import IAdminLogLocator
+    from zope.component import getUtility
     
+    values = {'adminid':event.adminid,'userid':event.userid,'datetime':event.datetime,
+              'ip':event.ip,'type':0,'level':4,'result':1,'description':u''}                
+    values['description'] = u"管理员%s修改了%s:%s" % (event.adminid,event.userid,event.description)  
+
+    locator = getUtility(IAdminLogLocator)
+    locator.add(values)
+         
+  
 
 def userLoginedIn(event):
     """Redirects  logged in users to getting started wizard"""  
