@@ -44,17 +44,24 @@
 <subscriber
     for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
     handler=".subscriber.userLoginedIn"
-    />   
+    />
+<subscriber
+    for="Products.PluggableAuthService.interfaces.events.IPrincipalDeletedEvent"
+    handler=".subscriber.PrincipalDeletedHandler"
+    />        
         -->
 <subscriber
     for="emc.policy.interfaces.IDeleteMemberEvent"
     handler=".subscriber.DeleteMemberEventHandler"
     />
-
 <subscriber
-    for="Products.PluggableAuthService.interfaces.events.IPrincipalDeletedEvent"
-    handler=".subscriber.PrincipalDeletedHandler"
-    />        
+    for="emc.policy.interfaces.ICreateMemberEvent"
+    handler=".subscriber.CreateMemberEventHandler"
+    />
+<subscriber
+    for="emc.policy.interfaces.IChangeMemberEvent"
+    handler=".subscriber.ChangeMemberEventHandler"
+    />           
     <genericsetup:importStep
         name="emc.policy-postInstall"
         title="emc.policy post_install import step"
