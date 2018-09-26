@@ -16,8 +16,8 @@ def __call__(self, domain, language=None):
         if len(tp) > 1:
             language = "%s_%s" % (tp[0],tp[1].upper())
         
-        import pdb
-        pdb.set_trace()
+#         import pdb
+#         pdb.set_trace()
         catalog = self._gettext_catalog(domain, language)
         response = self.request.response
         response.setHeader('content-type', 'application/json')
