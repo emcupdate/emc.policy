@@ -149,6 +149,50 @@ STRUCTURE = [
 def isNotCurrentProfile(context):
     return context.readDataFile('emcpolicy_marker.txt') is None
 
+def setupGroups():
+
+    group = api.group.create(
+            groupname='System Administrators',
+            title='System Administrators',
+            description='EMC System Administrators',
+            roles=['SysAdmin','Site Administrator', ],
+            ) 
+    group = api.group.create(
+            groupname='Secure Staffs',
+            title='Secure Staffs',
+            description='EMC Secure Staffs',
+            roles=['SecStaff','Site Administrator', ],
+            ) 
+    group = api.group.create(
+            groupname='Secure Auditors',
+            title='Secure Auditors',
+            description='EMC Secure Auditors',
+            roles=['SecAuditor','Site Administrator', ],
+            )
+    for i in range(1,3):            
+        api.user.create(
+            username='master%s' % i,
+            email='master%s@plone.org' % i,
+            password='secret$',
+                               ) 
+    api.group.add_user(groupname='System Administrators', username='master1')
+    api.group.add_user(groupname='Secure Staffs', username='master2')
+    api.group.add_user(groupname='Secure Auditors', username='master3')
+                
+def importVarious(context):
+    """create emc management groups and management users
+    """
+    
+    # Ordinarily, GenericSetup handlers check for the existence of XML files.
+    # Here, we are not parsing an XML file, but we use this text file as a 
+    # flag to check that we actually meant for this import step to be run.
+    # The file is found in profiles/default.
+    
+    if isNotCurrentProfile(context):
+        return
+    return
+  
+    setupGroups()        
 
 def post_install(context):
     """Setuphandler for the profile 'default'

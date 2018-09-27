@@ -23,6 +23,18 @@
  </object>
  <object name="user" meta_type="CMF Action Category">
   <property name="title"></property>
+  <object name="systemlog" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">System log</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${portal_url}/@@admin_logs</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:member.has_role('SecAuditor')</property>
+   <property name="permissions">
+    <element value="emc.kb:View log"/>
+   </property>
+   <property name="visible">True</property>
+  </object>  
   <object name="mystuff" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">My Folder</property>
    <property name="description" i18n:translate=""></property>

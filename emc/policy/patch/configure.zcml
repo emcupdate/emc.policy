@@ -88,11 +88,6 @@
      original="logout"
      replacement=".logout.logout"
   />
-   <monkey:patch
-     description="patch user group control panel delete member behavior"
-     class ="Products.CMFPlone.controlpanel.browser.usergroups_usersoverview.UsersOverviewControlPanel"
-     original="deleteMembers"
-     replacement=".usergroups_usersoverview.deleteMembers"
-  />
+
      
 </configure>

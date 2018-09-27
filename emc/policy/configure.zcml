@@ -9,6 +9,11 @@
 
   <five:registerPackage package="." initialize=".initialize" />
   <i18n:registerTranslations directory="locales" />
+  
+  <utility
+  	component=".vocabularies.safe_level_factory"
+  	name="emc.safe_level"
+	/>
   <genericsetup:registerProfile
       name="default"
       title="emc.policy"
@@ -69,7 +74,14 @@
         handler=".setuphandlers.post_install">
         <depends name='typeinfo' />
     </genericsetup:importStep>
-    
+
+   <genericsetup:upgradeStep
+      title="Create management users and groups"
+      description="Create management users and groups for EMC"
+      source="1002"
+      destination="1003"
+      handler="emc.policy.migration.setupGroups"
+      profile="emc.policy:default"/>    
   <genericsetup:upgradeStep
       title="Add navigator portlet to project folder"
       description="Add navigator portlet to project folder"
