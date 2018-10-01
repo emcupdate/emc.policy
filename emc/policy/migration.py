@@ -62,7 +62,7 @@ def add_navigator_portlet(context):
     chooser = INameChooser(manager)
     manager[chooser.chooseName(None, assignment)] = assignment
 
-    loadMigrationProfile(context, 'profile-emc.policy:to507')
+#     loadMigrationProfile(context, 'profile-emc.policy:to507')
  
     
 
