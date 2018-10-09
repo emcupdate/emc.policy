@@ -34,7 +34,31 @@
     <element value="emc.kb:View log"/>
    </property>
    <property name="visible">True</property>
-  </object>  
+  </object>
+  <object name="sysadmin" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">User management</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${portal_url}/@@add-usergroup-userprefs</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:member.has_role('SysAdmin')</property>
+   <property name="permissions">
+    <element value="EMC Site Setup: AddUser"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="managepermission" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Permission management</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${portal_url}/@@modify-usergroup-userprefs</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:member.has_role('SecStaff')</property>
+   <property name="permissions">
+    <element value="EMC Site Setup: ModifyUser"/>
+   </property>
+   <property name="visible">True</property>
+  </object>      
   <object name="mystuff" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">My Folder</property>
    <property name="description" i18n:translate=""></property>
@@ -62,7 +86,7 @@
    <property name="permissions">
     <element value="View"/>
    </property>
-   <property name="visible">True</property>
+   <property name="visible">False</property>
   </object>  
  </object>
 </object>
