@@ -158,19 +158,19 @@ def setupGroups(context):
             groupname='System Administrators',
             title='System Administrators',
             description='EMC System Administrators',
-            roles=['SysAdmin','Site Administrator', ],
+            roles=['SysAdmin',],
             ) 
     group = api.group.create(
             groupname='Secure Staffs',
             title='Secure Staffs',
             description='EMC Secure Staffs',
-            roles=['SecStaff','Site Administrator', ],
+            roles=['SecStaff', ],
             ) 
     group = api.group.create(
             groupname='Secure Auditors',
             title='Secure Auditors',
             description='EMC Secure Auditors',
-            roles=['SecAuditor','Site Administrator', ],
+            roles=['SecAuditor', ],
             )
     for i in range(1,3):            
         api.user.create(

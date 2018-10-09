@@ -83,7 +83,15 @@
       layer="emc.theme.interfaces.IThemeSpecific"
       class=".userdatapanel.UserDataConfiglet"
       permission="emc.controlpanel.modifyuser"
-      />                        
+      />
+  <browser:page
+      name="new-user"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      class="plone.app.users.browser.register.AddUserForm"
+      layer="emc.theme.interfaces.IThemeSpecific"
+      permission="emc.controlpanel.adduser"
+      />
+                                    
 	<!--           
   <browser:page
       name="usergroup-userprefs"
