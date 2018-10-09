@@ -5,14 +5,14 @@
        i18n:domain="plone">
     <schema name="member-fields">
     <field name="id_number" type="zope.schema.TextLine"
-      users:forms="In User Profile">
+      users:forms="On Registration">
       <description i18n:translate="help_idnumber">
           The serial number of user's personal identifier .
       </description>
       <required>True</required>
       <title i18n:translate="">Identifier Number</title>
     </field>
-    <field name="safe_level" type="zope.schema.Choice" users:forms="In User Profile">
+    <field name="safe_level" type="zope.schema.Choice" users:forms="On Registration">
       <description/>
       <required>False</required>
       <title i18n:translate="">safe level</title>
