@@ -106,3 +106,13 @@ msgstr ""
 # emc.project view
 msgid "system Ajax view"
 msgstr ""
+
+# emc.policy rolemap.xml
+msgid "SysAdmin"
+msgstr ""
+
+msgid "SecStaff"
+msgstr ""
+
+msgid "SecAuditor"
+msgstr ""

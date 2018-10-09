@@ -456,3 +456,18 @@ msgstr ""
 #: ./browser/templates/path_bar.pt:5
 msgid "you_are_here"
 msgstr ""
+
+msgid "SysAdmin"
+msgstr "系统管理员"
+
+msgid "SecStaff"
+msgstr "安全保密员"
+
+msgid "SecAuditor"
+msgstr "安全审计员"
+
+msgid "User management"
+msgstr "用户管理"
+
+msgid "Permission management"
+msgstr "权限管理"
