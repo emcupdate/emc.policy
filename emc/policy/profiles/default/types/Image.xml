@@ -9,5 +9,6 @@
  </property>
  <property name="behaviors" purge="false">
   <element value="plone.app.versioningbehavior.behaviors.IVersionable" />
+  <element value="emc.project.behaviors.security_level.ISecurityLevel"/>  
  </property> 
 </object>

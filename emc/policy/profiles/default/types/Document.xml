@@ -3,5 +3,6 @@
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="behaviors" purge="false">
   <element value="emc.memberArea.interfaces.IFavoriting"/>
+  <element value="emc.project.behaviors.security_level.ISecurityLevel"/>
  </property> 
 </object>

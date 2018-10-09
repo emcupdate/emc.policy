@@ -8,7 +8,8 @@
   <element value="file_review"/>
  </property>
  <property name="behaviors" purge="false">
- 	<element value="plone.app.versioningbehavior.behaviors.IVersionable" />
+  <element value="plone.app.versioningbehavior.behaviors.IVersionable" />
+  <element value="emc.project.behaviors.security_level.ISecurityLevel"/> 	
  </property>
  <action title="View" action_id="view" category="object" condition_expr=""
     icon_expr="" link_target="" url_expr="string:${object_url}/file_review"
