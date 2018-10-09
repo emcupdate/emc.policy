@@ -26,6 +26,7 @@ setup(name='emc.policy',
       install_requires=[
           'setuptools',
           'Products.CMFPlone',
+          'collective.autopermission',
           'z3c.jbot',
           'z3c.unconfigure',
           'collective.wtf',

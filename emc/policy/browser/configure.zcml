@@ -6,9 +6,20 @@
     xmlns:plone="http://namespaces.plone.org/plone"    
     i18n_domain="plone">
 
+  	<permission
+      	id="emc.controlpanel.adduser"
+      	title="EMC Site Setup: AddUser">
+    	<role name="SysAdmin"/>
+  	</permission>
+  	<permission
+      	id="emc.controlpanel.modifyuser"
+      	title="EMC Site Setup: ModifyUser">
+    	<role name="SecStaff"/>
+  	</permission>
+  	
  	<browser:resourceDirectory
-  name="emc.policy"
-  directory="static" />
+  		name="emc.policy"
+  		directory="static" />
 
    <!-- Overview Control Panel Overview -->
   <browser:page
@@ -18,14 +29,71 @@
       class=".overview.OverviewControlPanel"
       permission="plone.app.controlpanel.Overview"
       />
+      
+  <!-- VIEWS FOR three class permissions -->
   <browser:page
-      name="usergroup-userprefs"
+      name="add-usergroup-userprefs"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       layer="emc.theme.interfaces.IThemeSpecific"
+      class="Products.CMFPlone.controlpanel.browser.usergroups_usersoverview.UsersOverviewControlPanel"
+      template="templates/add_usergroups_usersoverview.pt"      
+      permission="emc.controlpanel.adduser"
+      />
+  <browser:page
+      name="add-usergroup-groupprefs"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      layer="emc.theme.interfaces.IThemeSpecific"      
+      class="Products.CMFPlone.controlpanel.browser.usergroups_groupsoverview.GroupsOverviewControlPanel"
+      template="templates/add_usergroups_groupsoverview.pt"
+      permission="emc.controlpanel.adduser"
+      />
+  <browser:page
+      name="add-usergroup-groupdetails"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class="Products.CMFPlone.controlpanel.browser.usergroups_groupdetails.GroupDetailsControlPanel"
+      permission="emc.controlpanel.adduser"
+      template="templates/usergroups_groupdetails.pt"
+      />
+  <browser:page
+      name="modify-usergroup-userprefs"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      layer="emc.theme.interfaces.IThemeSpecific"      
+      class="Products.CMFPlone.controlpanel.browser.usergroups_usersoverview.UsersOverviewControlPanel"
+      template="templates/modify_usergroups_usersoverview.pt"
+      permission="emc.controlpanel.modifyuser"
+      />
+  <browser:page
+      name="modify-usergroup-groupprefs"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      layer="emc.theme.interfaces.IThemeSpecific"      
+      class="Products.CMFPlone.controlpanel.browser.usergroups_groupsoverview.GroupsOverviewControlPanel"
+      template="templates/modify_usergroups_groupsoverview.pt"
+      permission="emc.controlpanel.modifyuser"
+      />
+  <browser:page
+      name="modify-usergroup-groupmembership"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class="Products.CMFPlone.controlpanel.browser.usergroups_groupmembership.GroupMembershipControlPanel"
+      permission="emc.controlpanel.modifyuser"
+      template="templates/usergroups_groupmembership.pt"
+      />
+  <browser:page
+      name="user-information"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      layer="emc.theme.interfaces.IThemeSpecific"
+      class=".userdatapanel.UserDataConfiglet"
+      permission="emc.controlpanel.modifyuser"
+      />                        
+	<!--           
+  <browser:page
+      name="usergroup-userprefs"
       class=".usergroups_usersoverview.UsersOverviewControlPanel"
-      permission="plone.app.controlpanel.UsersAndGroups"
       template="templates/usergroups_usersoverview.pt"
-      /> 
+      />
+      -->
+      
+
+    
    <browser:page
       name="file_review"
       for="plone.app.contenttypes.interfaces.IFile"
@@ -61,7 +129,7 @@
  	  layer="emc.theme.interfaces.IThemeSpecific"       
       permission="zope.Public"
       />
-<!-- manage tools-->      
+	<!-- manage tools-->      
    <browser:page
       for="*"
       name="set_layout"
@@ -138,10 +206,10 @@
         permission="zope2.View"
         />
 
- <include package="z3c.jbot" file="meta.zcml" />
+ 	<include package="z3c.jbot" file="meta.zcml" />
 
-<browser:jbot
-    directory="override"
-    layer="emc.theme.interfaces.IThemeSpecific"  />
-<include zcml:condition="installed plone.scale" file="scaling.zcml" />            
+	<browser:jbot
+    	directory="override"
+    	layer="emc.theme.interfaces.IThemeSpecific"  />
+	<include zcml:condition="installed plone.scale" file="scaling.zcml" />            
 </configure>

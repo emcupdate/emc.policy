@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/prefs_main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+      <metal:block fill-slot="top_slot">
+        <tal:insert tal:replace="nothing"
+              tal:define="dummy python:request.set('disable_border',1);
+              disable_column_two python:request.set('disable_plone.rightcolumn', 1);
+              disable_column_one python:request.set('disable_plone.leftcolumn', 1)" />
+      </metal:block>	
+</head>
+<body>
+
+<metal:main fill-slot="prefs_configlet_content"
+     tal:define="template_id string:@@add-usergroup-groupprefs;
+                 errors python:request.get('errors', {});
+                 showAll python:request.get('showAll', '') and not view.newSearch and 'y';
+                 Batch python:modules['Products.CMFPlone'].Batch;
+                 b_start python:0 if showAll or view.newSearch else request.get('b_start',0);
+                 portal_roles view/portal_roles;
+                 search_results view/searchResults;
+                 b_size python:showAll and len(search_results) or 20;
+                 batch python:search_results and Batch(search_results, b_size, int(b_start), orphan=1) or None;
+                 batchformkeys python:['searchstring','_authenticator'];
+                 portal_url context/portal_url;">
+
+  <article id="content">
+
+    <a href=""
+       id="setup-link"
+       tal:attributes="href string:$portal_url/@@overview-controlpanel"
+       i18n:translate="">
+      Site Setup
+    </a>
+
+    <h1 class="documentFirstHeading"
+        i18n:translate="">Users and Groups</h1>
+
+    <div metal:use-macro="context/global_statusmessage/macros/portal_message">
+        Portal status message
+    </div>
+
+    <div id="content-core">
+
+      <div class="autotabs">
+        <div class="autotoc-nav">
+          <a href="${portal_url}/@@add-usergroup-userprefs"
+             i18n:translate="label_users">Users</a>
+          <a class="active"
+             href="${portal_url}/@@add-usergroup-groupprefs"
+             i18n:translate="label_groups">Groups</a>
+             <!--
+          <a href="${portal_url}/@@usergroup-controlpanel"
+             i18n:translate="label_usergroup_settings">Settings</a>
+          <a href="${portal_url}/@@member-fields"
+             i18n:translate="label_member_fields">Member fields</a>
+            -->
+        </div>
+
+        <p class="discreet">
+          <span tal:omit-tag=""
+                i18n:translate="description_groups_management">
+            Groups are logical collections of users, such as
+            departments and business units. Groups are not directly
+            related to permissions on a global level, you normally
+            use Roles for that - and let certain Groups have a
+            particular role.
+          </span>
+          <span tal:omit-tag=""
+                i18n:translate="description_groups_management2">
+            The symbol
+            <img i18n:name="image_link_icon"
+                 tal:replace="structure context/site_icon.png" />
+            indicates a role inherited from membership in another group.
+          </span>
+        </p>
+
+        <p i18n:translate="description_pas_group_listing"
+           tal:condition="view/show_group_listing_warning">
+            Note: Some or all of your PAS groups
+            source plugins do not allow listing of groups, so you
+            may not see the groups defined by those plugins unless
+            doing a specific search.
+        </p>
+
+        <p>
+          <a class="pat-plone-modal" id="add-group"
+             tal:attributes="href string:${portal_url}/@@add-usergroup-groupdetails">
+             <button i18n:translate="label_add_new_group" class="context">Add New Group</button>
+          </a>
+        </p>
+                
+      </div>
+    </div>
+  </article>
+
+</metal:main>
+</body>
+</html>
+

@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/prefs_main_template/macros/master"
+    i18n:domain="plone">
+
+<head>
+      <metal:block fill-slot="top_slot">
+        <tal:insert tal:replace="nothing"
+              tal:define="dummy python:request.set('disable_border',1);
+              disable_column_two python:request.set('disable_plone.rightcolumn', 1);
+              disable_column_one python:request.set('disable_plone.leftcolumn', 1)" />
+      </metal:block>	
+</head>
+<body>
+
+<metal:main fill-slot="prefs_configlet_content"
+    tal:define="template_id string:@@add-usergroup-userprefs;
+                showAll python:request.get('showAll', '') and not view.newSearch and 'y';
+                Batch python:modules['Products.CMFPlone'].Batch;
+                b_start python:0 if showAll or view.newSearch else request.get('b_start',0);
+                b_size python:showAll and len(view.searchResults) or 20;
+                portal_roles view/portal_roles;
+                portal_url context/portal_url;">
+
+  <article id="content">
+
+    <a href=""
+       id="setup-link"
+       tal:attributes="href string:$portal_url/@@overview-controlpanel"
+       i18n:translate="">
+        Site Setup
+    </a>
+
+    <h1 class="documentFirstHeading"
+        i18n:translate="">Users and Groups</h1>
+
+    <div metal:use-macro="context/global_statusmessage/macros/portal_message">
+      Portal status message
+    </div>
+
+    <div id="content-core">
+
+      <div class="autotabs">
+        <div class="autotoc-nav">
+          <a class="active"
+             href="${portal_url}/@@add-usergroup-userprefs"
+             i18n:translate="label_users">Users</a>
+          <a href="${portal_url}/@@add-usergroup-groupprefs"
+             i18n:translate="label_groups">Groups</a>
+             <!--
+          <a href="${portal_url}/@@usergroup-controlpanel"
+             i18n:translate="label_usergroup_settings">Settings</a>
+          <a href="${portal_url}/@@member-fields"
+             i18n:translate="label_member_fields">Member fields</a>
+            -->
+        </div>
+
+        <p i18n:translate="user_roles_note" class="discreet">
+          Note that roles set here apply directly to a user.
+          The symbol <img i18n:name="image_link_icon" tal:replace="structure context/site_icon.png" />
+          indicates a role inherited from membership in a group.
+        </p>
+        <p tal:condition="view/show_users_listing_warning" class="portalMessage warning">
+          <strong i18n:translate="">Note</strong>
+          <span i18n:translate="description_pas_users_listing">Some or all of your PAS user source
+          plugins do not allow listing of users, so you may not see
+          the users defined by those plugins unless doing a specific
+          search.</span>
+        </p>
+        <p>
+          <a class="pat-plone-modal" id="add-user"
+             data-pat-plone-modal="{&quot;actionOptions&quot;: {&quot;displayInModal&quot;: false}}"
+             tal:attributes="href string:${portal_url}/@@new-user">
+             <button i18n:translate="label_add_new_user" id="add-new-user" class="context">Add New User</button>
+          </a>
+        </p>        
+      </div>
+    </div>
+
+  </article>
+
+</metal:main>
+
+</body>
+</html>

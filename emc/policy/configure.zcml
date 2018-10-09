@@ -30,7 +30,8 @@
      original="loginUser"
      replacement=".patch.membership.loginUser"
   /> 
-
+   
+   <includeDependencies package="." />
    <include package=".browser" />
    <include package=".portlets" />   
    <include package=".patch" />
@@ -39,7 +40,7 @@
    <include package=".sqlpas" />  
    -->
       
-<!-- login redirection to workspace
+	<!-- login redirection to workspace
 	<subscriber
     	for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
     	handler=".subscriber.userLoginedIn"
@@ -78,7 +79,7 @@
       	destination="1003"
       	handler="emc.policy.migration.setupGroups"
       	profile="emc.policy:default"/>
-      	-->     
+      	    
   	<genericsetup:upgradeStep
       	title="Add navigator portlet to project folder"
       	description="Add navigator portlet to project folder"
@@ -86,5 +87,6 @@
       	destination="1002"
       	handler="emc.policy.migration.add_navigator_portlet"
       	profile="emc.policy:default"/>
+      	--> 
    
 </configure>
