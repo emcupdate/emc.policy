@@ -4,26 +4,15 @@ from zope.interface import Interface
 from zope.interface import Attribute
 from emc.policy import MessageFactory as _
 # event
-class IAddchannelnumberEvent(Interface):
-    """新增一个渠道号"""
+   
+class IAddloginEvent(Interface):
+    """用户登陆事件"""
+
+
+class IAddlogoutEvent(Interface):
+    """用户注销事件"""
     
-class IAddloginlogsEvent(Interface):
-    """新增登录日志事件"""
-
-
-class IAddlogoutlogsEvent(Interface):
-    """新增日志事件"""
-    
-        
-class INormaladminlogsEvent(Interface):
-    """系统日志(正常)事件"""
-    rolename = Attribute("adminlogs rolename")
-    levelname = Attribute("adminlogs levelname")
-    elevelname = Attribute("adminlogs elevelname")
-    description = Attribute("adminlogs description")
-
-
-    
+          
 class IDeleteMemberEvent(Interface):
     """ manager through user&group controlpanel delete the specify member,fire this event"""
     adminid = Attribute("system administrator's id")

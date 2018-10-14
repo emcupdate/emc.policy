@@ -62,7 +62,14 @@
     	for="emc.policy.interfaces.IChangeMemberEvent"
     	handler=".subscriber.ChangeMemberEventHandler"
     />
-         
+	<subscriber
+    	for="emc.policy.interfaces.IAddloginEvent"
+    	handler=".subscriber.UserLoginEventHandler"
+    />
+	<subscriber
+    	for="emc.policy.interfaces.IAddlogoutEvent"
+    	handler=".subscriber.UserLogoutEventHandler"
+    />             
     <genericsetup:importStep
         name="emc.policy-postInstall"
         title="emc.policy post_install import step"

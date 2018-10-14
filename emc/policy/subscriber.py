@@ -4,6 +4,28 @@ from zope.site.hooks import getSite
 from Products.CMFCore.utils import getToolByName
 from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
 
+def UserLogoutEventHandler(event):
+    """the system administrator delete specify user handler"""
+    from emc.kb.interfaces import IAdminLogLocator
+    from zope.component import getUtility
+    
+    values = {'adminid':event.adminid,'userid':'','datetime':event.datetime,
+              'ip':event.ip,'type':0,'level':4,'result':1,'description':u''}                
+    values['description'] = u"用户%s登出了EMC系统" % (event.adminid)  
+    locator = getUtility(IAdminLogLocator)
+    locator.add(values)
+
+def UserLoginEventHandler(event):
+    """the system administrator delete specify user handler"""
+    from emc.kb.interfaces import IAdminLogLocator
+    from zope.component import getUtility
+    
+    values = {'adminid':event.adminid,'userid':'','datetime':event.datetime,
+              'ip':event.ip,'type':0,'level':4,'result':1,'description':u''}                
+    values['description'] = u"用户%s登陆了EMC系统" % (event.adminid)  
+    locator = getUtility(IAdminLogLocator)
+    locator.add(values)
+    
 def DeleteMemberEventHandler(event):
     """the system administrator delete specify user handler"""
     from emc.kb.interfaces import IAdminLogLocator

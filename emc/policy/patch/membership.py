@@ -32,9 +32,12 @@ from Products.CMFCore.MembershipTool import MembershipTool as BaseTool
 from Products.PlonePAS.events import UserLoggedInEvent
 from Products.PlonePAS.events import UserInitialLoginInEvent
 from Products.PlonePAS.events import UserLoggedOutEvent
+from emc.policy.events import AddloginEvent
 from Products.PlonePAS.interfaces import membership
 from Products.PlonePAS.utils import cleanId
 from Products.PlonePAS.utils import scale_image
+from emc.policy import get_ip,fmt,list2str
+import datetime
 
 default_portrait = 'defaultUser.png'
 logger = logging.getLogger('PlonePAS')
@@ -62,6 +65,15 @@ def loginUser(self, REQUEST=None):
             return
 
         res = self.setLoginTimes()
+        loginEvent = AddloginEvent(adminid = user.getId(),
+                                     userid = "",
+                                     datetime = datetime.datetime.now().strftime(fmt),
+                                     ip = get_ip(),
+                                     type = 0,
+                                     description = "",
+                                     result = 1)
+        if loginEvent.available():
+            event.notify(loginEvent)
         if res:
             event.notify(UserInitialLoginInEvent(user))
         else:
