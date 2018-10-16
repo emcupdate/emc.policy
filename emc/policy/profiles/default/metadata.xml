@@ -5,6 +5,7 @@
         <dependency>profile-emc.theme:default</dependency>
         <dependency>profile-emc.bokeh:default</dependency>
         <dependency>profile-emc.project:default</dependency>
-        <dependency>profile-emc.kb:default</dependency>                      
+        <dependency>profile-emc.kb:default</dependency>
+        <dependency>profile-emc.auth:default</dependency>                              
     </dependencies>  
 </metadata>
