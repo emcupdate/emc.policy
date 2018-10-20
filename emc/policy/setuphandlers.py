@@ -177,7 +177,15 @@ def setupGroups(context):
             username='master%s' % i,
             email='master%s@plone.org' % i,
             password='secret$',
+#             id_number = '43301019910611332%s' % i,
                                ) 
+    api.user.create(
+            username='333010199106113321' ,
+#             fullname=u'李四',
+            email='lisi@plone.org',
+            password='secret$',
+#             id_number='333010199106113321',
+                               )
     api.group.add_user(groupname='System Administrators', username='test17')
     api.group.add_user(groupname='Secure Staffs', username='test18')
     api.group.add_user(groupname='Secure Auditors', username='test19')
@@ -217,11 +225,15 @@ def post_install(context):
     for item in STRUCTURE:
         _create_content(item, portal) 
     for i in range(1,20): 
+#         if i >= 10:
+#             idnumber = '5330101991061133%s' % i
+#         else:
+#             idnumber = '53301019910611331%s' % i
         user = api.user.create(
                                username='test%s' % i,
 #                                fullname=u'张测%s',
                                email='test%s@plone.org' % i,
-                               password='secret',
+                               password='secret',                               
                                )
     setupGroups(context)    
     try:
