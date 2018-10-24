@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <metadata>
-  <version>1003</version>
+  <version>1005</version>
     <dependencies> 
         <dependency>profile-emc.theme:default</dependency>
         <dependency>profile-emc.bokeh:default</dependency>
         <dependency>profile-emc.project:default</dependency>
         <dependency>profile-emc.kb:default</dependency>
-        <dependency>profile-emc.auth:default</dependency>                              
+        <dependency>profile-emc.auth:default</dependency>
+        <dependency>profile-collective.externaleditor:default</dependency>                                      
     </dependencies>  
 </metadata>
