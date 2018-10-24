@@ -88,6 +88,11 @@
      original="logout"
      replacement=".logout.logout"
   />
-
+   <monkey:patch
+     description="patch user register form for cancel groups field"
+     class ="plone.app.users.browser.register.AddUserForm"
+     original="updateFields"
+     replacement=".register.updateFields"
+  />
      
 </configure>
