@@ -36,7 +36,7 @@ from emc.policy.events import AddloginEvent
 from Products.PlonePAS.interfaces import membership
 from Products.PlonePAS.utils import cleanId
 from Products.PlonePAS.utils import scale_image
-from emc.policy import get_ip,fmt,list2str
+from emc.policy import get_ip,fmt,list2str,getfullname_orid
 import datetime
 
 default_portrait = 'defaultUser.png'
@@ -65,7 +65,8 @@ def loginUser(self, REQUEST=None):
             return
 
         res = self.setLoginTimes()
-        loginEvent = AddloginEvent(adminid = user.getId(),
+
+        loginEvent = AddloginEvent(adminid = getfullname_orid(user),
                                      userid = "",
                                      datetime = datetime.datetime.now().strftime(fmt),
                                      ip = get_ip(),

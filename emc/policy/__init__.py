@@ -20,6 +20,14 @@ def list2str(lst):
             initstr = "%s,%s" %(initstr,str(i))
     return initstr
         
+def getfullname_orid(userobj):
+    "if fullname exist then return fullname, else return id"
+    fn=userobj.getProperty("fullname","")
+    if bool(fn):
+        return fn
+    else:
+        return userobj.getId()
+
     
 def get_ip(request = None):
     """ Extract the client IP address from the HTTP request in a proxy-compatible way.
@@ -29,8 +37,11 @@ def get_ip(request = None):
     if request == None:
         from zope.globalrequest import getRequest
         request = getRequest()
-    if request == None:return ""    
-    if "HTTP_X_FORWARDED_FOR" in request.environ:
+    if request == None:return ""
+    ip = request.get("HTTP_CLIENTIP",'')
+    if bool(ip):
+        return ip    
+    elif "HTTP_X_FORWARDED_FOR" in request.environ:
         # Virtual host
         ip = request.environ["HTTP_X_FORWARDED_FOR"]
     elif "HTTP_HOST" in request.environ:

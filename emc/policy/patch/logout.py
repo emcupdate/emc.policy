@@ -2,14 +2,14 @@ from AccessControl.SecurityManagement import getSecurityManager
 from zope import event
 import datetime
 from emc.policy.events import AddlogoutEvent
-from emc.policy import get_ip,fmt,list2str
+from emc.policy import get_ip,fmt,list2str,getfullname_orid
 
 def logout(self, REQUEST):
     """Publicly accessible method to log out a user
     """
     user = getSecurityManager().getUser()
 
-    logoutEvent = AddlogoutEvent(adminid = user.getId(),
+    logoutEvent = AddlogoutEvent(adminid = getfullname_orid(user),
                                      userid = "",
                                      datetime = datetime.datetime.now().strftime(fmt),
                                      ip = get_ip(),
