@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <registry>
+
   <!--resource -->
   
   <!-- Bundles -->
@@ -68,8 +69,8 @@
   </record>
 
 <records interface="Products.CMFPlone.interfaces.ISecuritySchema" prefix="plone">
-    <value key="enable_self_reg">True</value>
-    <value key="enable_user_pwd_choice">True</value>
+    <value key="enable_self_reg">False</value>
+    <value key="enable_user_pwd_choice">False</value>
     <value key="enable_user_folders">True</value>    
 </records>
 <!-- custom TinyMCE templates -->	
