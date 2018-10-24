@@ -6,7 +6,7 @@ from plone.app.dexterity.behaviors import constrains
 from logging import getLogger
 from zope import event
 from emc.memberArea.events import MemberAreaCreatedEvent
-
+from emc.project.behaviors.localroles import Ilocalroles
 from z3c.relationfield import RelationValue
 from zope.component import getUtility
 from zope.intid import IntIds
@@ -172,13 +172,7 @@ def setupGroups(context):
             description='EMC Secure Auditors',
             roles=['SecAuditor', ],
             )
-    for i in range(1,3):            
-        api.user.create(
-            username='master%s' % i,
-            email='master%s@plone.org' % i,
-            password='secret$',
-#             id_number = '43301019910611332%s' % i,
-                               ) 
+
     api.user.create(
             username='333010199106113321' ,
 #             fullname=u'李四',
@@ -236,6 +230,13 @@ def post_install(context):
                                password='secret',                               
                                )
     setupGroups(context)    
+    # add localroles 'Manager' to projectFolder for SecStuff
+    
+    try:
+        portal['project_folder'].manage_setLocalRoles('test18',['Site Administrator'])
+        portal['project_folder']['notebooke210'].manage_setLocalRoles('test18',['Site Administrator'])
+    except:
+        pass
     try:
         add_navigator_portlet(context)
     except:
