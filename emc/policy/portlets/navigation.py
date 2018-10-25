@@ -55,7 +55,7 @@ class ICustomNavtreeStrategy(INavtreeStrategy):
 
 # @implementer(ICustomNavtreeStrategy)
 class CustomNavtreeStrategy(SitemapNavtreeStrategy):
-    """Basic navigation tree strategy that does nothing.
+    """navigation tree strategy for project management.
     """
 
     implements(ICustomNavtreeStrategy)

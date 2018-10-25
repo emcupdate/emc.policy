@@ -2,7 +2,9 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:monkey="http://namespaces.plone.org/monkey">
 
-
+<adapter factory=".member_navigation.MembersNavtreeStrategy"
+		 provides=".member_navigation.IMembersNavtreeStrategy"
+ />
 
   <utility
       name="zh"
@@ -94,5 +96,10 @@
      original="updateFields"
      replacement=".register.updateFields"
   />
-     
+   <monkey:patch
+     description="patch members area navigator portlet"
+     class ="plone.app.portlets.portlets.navigation.Renderer"
+     original="getNavTree"
+     replacement=".member_navigation.getNavTree"
+  />     
 </configure>

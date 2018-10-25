@@ -16,7 +16,7 @@ if (expanded == "false") {
 	el.addClass('collapse in');
 	$(this).attr('aria-expanded', true);
 // if current view is ajax_listings?
-if ($('#searchResultDiv') !== null || $('#searchResultDiv') !==undefined){	
+if ($('#searchResultDiv').length > 0){	
 	$("#objid").attr("value", collapse_handler);
 	searchEvent();
 }

@@ -62,6 +62,24 @@ def add_navigator_portlet(context):
     chooser = INameChooser(manager)
     manager[chooser.chooseName(None, assignment)] = assignment
 
+def add_member_navigator_portlet(context):
+    pc = getToolByName(context, "portal_catalog")
+    query = {"object_provides":IProjectFolder.__identifier__,"id":"Members"}
+    bns = pc(query)
+    if len(bns) == 0: return
+    obj = bns[0].getObject()
+    column = getUtility(IPortletManager, name=u"plone.leftcolumn")
+    
+    # We multi-adapt the object and the column to an assignment mapping,
+    # which acts like a dict where we can put portlet assignments
+    manager = getMultiAdapter((obj, column,), IPortletAssignmentMapping)
+    
+    # We then create the assignment and put it in the assignment manager,
+    # using the default name-chooser to pick a suitable name for us.
+    assignment = navigation.Assignment(name=u"工作空间",root_uid=obj.UID(),topLevel=0)
+    chooser = INameChooser(manager)
+    manager[chooser.chooseName(None, assignment)] = assignment
+
 #     loadMigrationProfile(context, 'profile-emc.policy:to507')
  
     
