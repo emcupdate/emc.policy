@@ -349,11 +349,11 @@ msgstr ""
 
 #: ./vocabularies.py:9
 msgid "more secret"
-msgstr "机密"
+msgstr "重要人员"
 
 #: ./vocabularies.py:10
 msgid "most secret"
-msgstr "绝密"
+msgstr "核心人员"
 
 msgid "pendingprocess"
 msgstr "待反馈"
@@ -381,7 +381,7 @@ msgstr "安全等级"
 
 #: ./vocabularies.py:8
 msgid "secret"
-msgstr "秘密"
+msgstr "一般人员"
 
 msgid "system Ajax view"
 msgstr "缺省Ajax视图"

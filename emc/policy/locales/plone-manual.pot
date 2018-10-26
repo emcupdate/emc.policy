@@ -116,3 +116,13 @@ msgstr ""
 
 msgid "SecAuditor"
 msgstr ""
+
+# emc.policy vocabularies.py
+msgid "secret"
+msgstr ""
+
+msgid "more secret"
+msgstr ""
+
+msgid "most secret"
+msgstr ""
