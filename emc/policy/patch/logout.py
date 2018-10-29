@@ -10,7 +10,7 @@ def logout(self, REQUEST):
     user = getSecurityManager().getUser()
 
     logoutEvent = AddlogoutEvent(adminid = getfullname_orid(user),
-                                     userid = "",
+                                     userid = " ",
                                      datetime = datetime.datetime.now().strftime(fmt),
                                      ip = get_ip(),
                                      type = 0,

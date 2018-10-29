@@ -67,7 +67,7 @@ def loginUser(self, REQUEST=None):
         res = self.setLoginTimes()
 
         loginEvent = AddloginEvent(adminid = getfullname_orid(user),
-                                     userid = "",
+                                     userid = " ",
                                      datetime = datetime.datetime.now().strftime(fmt),
                                      ip = get_ip(),
                                      type = 0,
