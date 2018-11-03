@@ -76,7 +76,7 @@ def loginUser(self, REQUEST=None):
         if loginEvent.available():
             event.notify(loginEvent)
         if res:
-            event.notify(UserInitialLoginInEvent(user))
+            event.notify(UserInitialLoginInEvent(user))            
         else:
             event.notify(UserLoggedInEvent(user))
 
@@ -92,26 +92,16 @@ def loginUser(self, REQUEST=None):
 #         import pdb
 #         pdb.set_trace()
         self.createMemberArea()
+        if res:
+            event.notify(MemberAreaCreatedEvent(user))
         try:
             pas = getToolByName(self, 'acl_users')
             pas.credentials_cookie_auth.login()
-            if res:
-                event.notify(MemberAreaCreatedEvent(user)) 
+#             if res:
+#                 event.notify(MemberAreaCreatedEvent(user)) 
             #set the cookie __ac so that client can remember it
-            myresponse = REQUEST.RESPONSE
-            if getattr(REQUEST,"ac_persistent",None):
-                cookiename = '__ac'
-                cookie = myresponse.cookies.get(cookiename)
-                if cookie:
-                    cookievalue = cookie.pop('value')
-                    new_date = DateTime()+7
-                    cookie['expires'] = new_date.strftime("%a, %d-%h-%y %H:%m:%S GMT+8")
-                    myresponse.setCookie(cookiename,cookievalue,**cookie)
+
         except AttributeError:
             # The cookie plugin may not be present
             pass
-        try:
-            pass
-#             event.notify(AddloginlogsEvent(user))
-        except AttributeError:
-            pass
+

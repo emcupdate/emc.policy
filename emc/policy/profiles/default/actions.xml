@@ -14,7 +14,7 @@
       name="url_expr">python:portal.portal_membership.getHomeFolder().absolute_url() + "/workspace/"</property>
    <property name="link_target"></property>
    <property name="icon_expr"></property>
-   <property name="available_expr">python:member is not None and member.id != 'admin'</property>
+   <property name="available_expr">python:portal.portal_membership.getHomeFolder() is not None and member.id != 'admin'</property>
    <property name="permissions">
     <element value="View"/>
    </property>
