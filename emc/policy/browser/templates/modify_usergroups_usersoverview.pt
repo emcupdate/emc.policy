@@ -22,7 +22,7 @@
                 Batch python:modules['Products.CMFPlone'].Batch;
                 b_start python:0 if showAll or view.newSearch else request.get('b_start',0);
                 b_size python:showAll and len(view.searchResults) or 20;
-                portal_roles view/portal_roles;
+                portal_roles python:view.roleFilter();
                 portal_url context/portal_url;">
 
   <article id="content">
@@ -109,7 +109,9 @@
                   <tr class="odd">
                       <th rowspan="" i18n:translate="listingheader_user_name">User name</th>
                       <th tal:repeat="portal_role portal_roles" tal:content="portal_role" i18n:translate="">Role</th>
+                      <!--
                       <th rowspan="" i18n:translate="listingheader_reset_password">Reset Password</th>
+                      -->
                       <th rowspan="" i18n:translate="listingheader_remove">Remove</th>
                   </tr>
                   </tal:block>
@@ -151,7 +153,7 @@
                           </tal:block>
 
                         </td>
-
+<!--
                         <td class="listingCheckbox">
                           <input type="checkbox"
                              class="noborder"
@@ -160,7 +162,7 @@
                                          tal:attributes="value userid;
                                                          disabled python:user['can_set_password'] and default or 'disabled'" />
                         </td>
-
+-->
                         <td class="listingCheckbox">
                           <input type="checkbox"
                                          class="noborder notify"

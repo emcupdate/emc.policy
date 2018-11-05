@@ -52,7 +52,14 @@ class UsersOverviewControlPanel(UsersGroupsControlPanelView):
         mtool = getToolByName(self, 'portal_membership')
         current = mtool.getAuthenticatedMember()
         curroles = current.getRoles()
-        return bool(rolename in curroles) 
+        return bool(rolename in curroles)
+    
+    def roleFilter(self,rolesfiltered=['Manager','Site Administrator','SysAdmin','SecStaff','SecAuditor']):
+        """True iff current login user' role"""
+        
+        origin = self.portal_roles
+        return filter(lambda x: x not in rolesfiltered,origin)
+     
     
     def doSearch(self, searchString):
         acl = getToolByName(self, 'acl_users')

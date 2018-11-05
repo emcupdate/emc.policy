@@ -58,7 +58,7 @@
       name="modify-usergroup-userprefs"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       layer="emc.theme.interfaces.IThemeSpecific"      
-      class="Products.CMFPlone.controlpanel.browser.usergroups_usersoverview.UsersOverviewControlPanel"
+      class=".usergroups_usersoverview.UsersOverviewControlPanel"
       template="templates/modify_usergroups_usersoverview.pt"
       permission="emc.controlpanel.modifyuser"
       />
