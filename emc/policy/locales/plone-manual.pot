@@ -126,3 +126,10 @@ msgstr ""
 
 msgid "most secret"
 msgstr ""
+
+# emc.policy actions.xml
+msgid "System log"
+msgstr ""
+
+msgid "User log"
+msgstr ""

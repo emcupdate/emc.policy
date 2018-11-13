@@ -5,7 +5,29 @@ from Products.CMFCore.utils import getToolByName
 from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
 
 def UserLogoutEventHandler(event):
-    """the system administrator delete specify user handler"""
+    """normal users logout event handler"""
+    from emc.kb.interfaces import IUserLogLocator
+    from zope.component import getUtility
+    
+    values = {'userid':event.userid,'datetime':event.datetime,
+              'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
+    values['description'] = u"用户%s登出了EMC系统" % (event.userid)  
+    locator = getUtility(IUserLogLocator)
+    locator.add(values)
+
+def UserLoginEventHandler(event):
+    """normal users login event handler"""
+    from emc.kb.interfaces import IUserLogLocator
+    from zope.component import getUtility
+    
+    values = {'userid':event.userid,'datetime':event.datetime,
+              'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
+    values['description'] = u"用户%s登陆了EMC系统" % (event.userid)  
+    locator = getUtility(IUserLogLocator)
+    locator.add(values)
+
+def AdminLogoutEventHandler(event):
+    """the system administrators logout event handler"""
     from emc.kb.interfaces import IAdminLogLocator
     from zope.component import getUtility
     
@@ -15,8 +37,8 @@ def UserLogoutEventHandler(event):
     locator = getUtility(IAdminLogLocator)
     locator.add(values)
 
-def UserLoginEventHandler(event):
-    """the system administrator delete specify user handler"""
+def AdminLoginEventHandler(event):
+    """the system administrators login event handler"""
     from emc.kb.interfaces import IAdminLogLocator
     from zope.component import getUtility
     

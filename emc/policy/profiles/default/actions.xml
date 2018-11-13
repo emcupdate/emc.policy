@@ -58,7 +58,19 @@
     <element value="EMC Site Setup: ModifyUser"/>
    </property>
    <property name="visible">True</property>
-  </object>      
+  </object>
+  <object name="userlog" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">User log</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${portal_url}/@@user_logs</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:member.has_role('SecStaff')</property>
+   <property name="permissions">
+    <element value="EMC Site Setup: ModifyUser"/>
+   </property>
+   <property name="visible">True</property>
+  </object>        
   <object name="mystuff" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">My Folder</property>
    <property name="description" i18n:translate=""></property>

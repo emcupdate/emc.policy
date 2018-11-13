@@ -3,7 +3,7 @@ from zope import interface
 from zope.component import adapts
 from zope.component.interfaces import ObjectEvent
 from plone import api
-from emc.policy.interfaces import IAddloginEvent,IAddlogoutEvent
+from emc.policy.interfaces import IAddloginEvent,IAddlogoutEvent,INormalUserloginEvent,INormalUserlogoutEvent
 from emc.policy.interfaces import ICreateMemberEvent
 from emc.policy.interfaces import IChangeMemberEvent
 from emc.policy.interfaces import IDeleteMemberEvent
@@ -28,6 +28,15 @@ class EventFilter(object):
             return not('Manager' in roles)
         except:
             return True
+        
+    def is_normal_user(self):
+
+        try:
+            roles = api.user.get_roles()
+            roles2 = filter(lambda x: x not in ['SysAdmin','SecStaff','SecAuditor'],roles)
+            return roles == roles2
+        except:
+            return False        
 
 class AddloginEvent(EventFilter):
     interface.implements(IAddloginEvent)
@@ -35,7 +44,30 @@ class AddloginEvent(EventFilter):
 
 class AddlogoutEvent(EventFilter):
     interface.implements(IAddlogoutEvent)
+
+
+class NormalUserloginEvent(EventFilter):
+    interface.implements(INormalUserloginEvent)
+    
+    def __init__(self,userid,datetime,ip,type,description,result):
+        self.userid = userid
+        self.datetime = datetime
+        self.ip = ip
+        self.type = type
+        self.description = description
+        self.result = result    
+      
+
+class NormalUserlogoutEvent(EventFilter):
+    interface.implements(INormalUserlogoutEvent)
            
+    def __init__(self,userid,datetime,ip,type,description,result):
+        self.userid = userid
+        self.datetime = datetime
+        self.ip = ip
+        self.type = type
+        self.description = description
+        self.result = result
      
 class DeleteMemberEvent(EventFilter):
     """manager through user&group controlpanel delete the specify member,fire this event"""

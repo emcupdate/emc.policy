@@ -12,6 +12,14 @@ class IAddloginEvent(Interface):
 class IAddlogoutEvent(Interface):
     """用户注销事件"""
     
+
+class INormalUserloginEvent(Interface):
+    """用户登陆事件"""
+
+
+class INormalUserlogoutEvent(Interface):
+    """用户注销事件"""
+    
           
 class IDeleteMemberEvent(Interface):
     """ manager through user&group controlpanel delete the specify member,fire this event"""

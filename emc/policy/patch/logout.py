@@ -1,7 +1,7 @@
 from AccessControl.SecurityManagement import getSecurityManager
 from zope import event
 import datetime
-from emc.policy.events import AddlogoutEvent
+from emc.policy.events import AddlogoutEvent,NormalUserlogoutEvent
 from emc.policy import get_ip,fmt,list2str,getfullname_orid
 
 def logout(self, REQUEST):
@@ -9,8 +9,7 @@ def logout(self, REQUEST):
     """
     user = getSecurityManager().getUser()
 
-    logoutEvent = AddlogoutEvent(adminid = getfullname_orid(user),
-                                     userid = " ",
+    logoutEvent = NormalUserlogoutEvent(userid = getfullname_orid(user),
                                      datetime = datetime.datetime.now().strftime(fmt),
                                      ip = get_ip(),
                                      type = 0,
@@ -18,7 +17,17 @@ def logout(self, REQUEST):
                                      result = 1)
 
     if logoutEvent.available():
+        if loginEvent.is_normal_user():
             event.notify(logoutEvent)
+        else:
+            logoutEvent = AddlogoutEvent(adminid = getfullname_orid(user),
+                                     userid = " ",
+                                     datetime = datetime.datetime.now().strftime(fmt),
+                                     ip = get_ip(),
+                                     type = 0,
+                                     description = "",
+                                     result = 1)
+            event.notify(logoutEvent)            
     self.resetCredentials(REQUEST, REQUEST['RESPONSE'])
 
     # Little bit of a hack: Issuing a redirect to the same place

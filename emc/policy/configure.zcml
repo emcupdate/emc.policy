@@ -64,12 +64,20 @@
     />
 	<subscriber
     	for="emc.policy.interfaces.IAddloginEvent"
-    	handler=".subscriber.UserLoginEventHandler"
+    	handler=".subscriber.AdminLoginEventHandler"
     />
 	<subscriber
     	for="emc.policy.interfaces.IAddlogoutEvent"
+    	handler=".subscriber.AdminLogoutEventHandler"
+    />
+	<subscriber
+    	for="emc.policy.interfaces.INormalUserloginEvent"
+    	handler=".subscriber.UserLoginEventHandler"
+    />
+	<subscriber
+    	for="emc.policy.interfaces.INormalUserlogoutEvent"
     	handler=".subscriber.UserLogoutEventHandler"
-    />             
+    />                 
     <genericsetup:importStep
         name="emc.policy-postInstall"
         title="emc.policy post_install import step"
