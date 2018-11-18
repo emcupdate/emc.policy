@@ -3,11 +3,14 @@ from zope.component import getMultiAdapter
 from zope.site.hooks import getSite
 from Products.CMFCore.utils import getToolByName
 from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
+from emc.policy.utils import check_log
 
 def UserLogoutEventHandler(event):
     """normal users logout event handler"""
-    from emc.kb.interfaces import IUserLogLocator
-    from zope.component import getUtility
+    from emc.kb.interfaces import IUserLogLocator,IDbapi
+    from zope.component import getUtility,queryUtility
+    dbapi = queryUtility(IDbapi, name="userlog")
+    rt = check_log(dbapi)
     
     values = {'userid':event.userid,'datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
@@ -17,8 +20,10 @@ def UserLogoutEventHandler(event):
 
 def UserLoginEventHandler(event):
     """normal users login event handler"""
-    from emc.kb.interfaces import IUserLogLocator
-    from zope.component import getUtility
+    from emc.kb.interfaces import IUserLogLocator,IDbapi
+    from zope.component import getUtility,queryUtility
+    dbapi = queryUtility(IDbapi, name="userlog")
+    rt = check_log(dbapi)
     
     values = {'userid':event.userid,'datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
@@ -28,8 +33,10 @@ def UserLoginEventHandler(event):
 
 def AdminLogoutEventHandler(event):
     """the system administrators logout event handler"""
-    from emc.kb.interfaces import IAdminLogLocator
-    from zope.component import getUtility
+    from emc.kb.interfaces import IAdminLogLocator,IDbapi
+    from zope.component import getUtility,queryUtility
+    dbapi = queryUtility(IDbapi, name="adminlog")
+    rt = check_log(dbapi)
     
     values = {'adminid':event.adminid,'userid':' ','datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
@@ -39,8 +46,10 @@ def AdminLogoutEventHandler(event):
 
 def AdminLoginEventHandler(event):
     """the system administrators login event handler"""
-    from emc.kb.interfaces import IAdminLogLocator
-    from zope.component import getUtility
+    from emc.kb.interfaces import IAdminLogLocator,IDbapi
+    from zope.component import getUtility,queryUtility
+    dbapi = queryUtility(IDbapi, name="adminlog")
+    rt = check_log(dbapi)
     
     values = {'adminid':event.adminid,'userid':' ','datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
@@ -50,8 +59,10 @@ def AdminLoginEventHandler(event):
     
 def DeleteMemberEventHandler(event):
     """the system administrator delete specify user handler"""
-    from emc.kb.interfaces import IAdminLogLocator
-    from zope.component import getUtility
+    from emc.kb.interfaces import IAdminLogLocator,IDbapi
+    from zope.component import getUtility,queryUtility
+    dbapi = queryUtility(IDbapi, name="adminlog")
+    rt = check_log(dbapi)
     
     values = {'adminid':event.adminid,'userid':event.userid,'datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
@@ -61,8 +72,10 @@ def DeleteMemberEventHandler(event):
     
 def CreateMemberEventHandler(event):
     """the system administrator create specify user handler"""
-    from emc.kb.interfaces import IAdminLogLocator
-    from zope.component import getUtility
+    from emc.kb.interfaces import IAdminLogLocator,IDbapi
+    from zope.component import getUtility,queryUtility
+    dbapi = queryUtility(IDbapi, name="adminlog")
+    rt = check_log(dbapi)
     
     values = {'adminid':event.adminid,'userid':event.userid,'datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
@@ -72,8 +85,10 @@ def CreateMemberEventHandler(event):
     
 def ChangeMemberEventHandler(event):
     """the system administrator change specify user handler"""
-    from emc.kb.interfaces import IAdminLogLocator
-    from zope.component import getUtility
+    from emc.kb.interfaces import IAdminLogLocator,IDbapi
+    from zope.component import getUtility,queryUtility
+    dbapi = queryUtility(IDbapi, name="adminlog")
+    rt = check_log(dbapi)
     
     values = {'adminid':event.adminid,'userid':event.userid,'datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
