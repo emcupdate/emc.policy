@@ -99,6 +99,10 @@
     <element value="View"/>
    </property>
    <property name="visible">False</property>
-  </object>  
+  </object>
+      <!-- Disable the built-in login action -->
+  <object name="login">
+   <property name="visible">False</property>
+  </object>    
  </object>
 </object>
