@@ -33,7 +33,9 @@ class EventFilter(object):
 
         try:
             roles = api.user.get_roles()
-            roles2 = filter(lambda x: x not in ['SysAdmin','SecStaff','SecAuditor'],roles)
+#             roles2 = filter(lambda x: x not in ['SysAdmin','SecStaff','SecAuditor'],roles)
+# SecAuditor audited by SecStaff
+            roles2 = filter(lambda x: x not in ['SysAdmin','SecStaff'],roles)
             return roles == roles2
         except:
             return False        
