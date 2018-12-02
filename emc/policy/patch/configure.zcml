@@ -101,5 +101,11 @@
      class ="plone.app.portlets.portlets.navigation.Renderer"
      original="getNavTree"
      replacement=".member_navigation.getNavTree"
-  />     
+  />
+    <monkey:patch
+     description="patch registerTool for browser view"
+     class ="Products.CMFPlone.RegistrationTool.RegistrationTool"
+     original="isMemberIdAllowed"
+     replacement=".RegistrationTool.isMemberIdAllowed"
+  />        
 </configure>

@@ -118,7 +118,13 @@ msgid "SecAuditor"
 msgstr ""
 
 # emc.policy vocabularies.py
-msgid "secret"
+msgid "no secret"
+msgstr ""
+
+msgid "inner"
+msgstr ""
+
+msgid "normal secret"
 msgstr ""
 
 msgid "more secret"

@@ -7,6 +7,7 @@
         <dependency>profile-emc.project:default</dependency>
         <dependency>profile-emc.kb:default</dependency>
         <dependency>profile-emc.auth:default</dependency>
+        <dependency>profile-emc.sync:default</dependency>        
         <dependency>profile-collective.externaleditor:default</dependency>                                      
     </dependencies>  
 </metadata>

@@ -132,8 +132,6 @@ msgstr "未读"
 msgid "Workspace"
 msgstr "工作台"
 
-
-
 msgid "help_change_note"
 msgstr "为本次更改，输入一个备注信息"
 
@@ -154,12 +152,21 @@ msgid "listingheader_title"
 msgstr "标题"
 
 #: ./vocabularies.py:9
+msgid "no secret"
+msgstr "非密"
+
+msgid "inner"
+msgstr "内部"
+
+msgid "normal secret"
+msgstr "一般"
+
 msgid "more secret"
-msgstr "重要人员"
+msgstr "重要"
 
 #: ./vocabularies.py:10
 msgid "most secret"
-msgstr "核心人员"
+msgstr "核心"
 
 msgid "pendingprocess"
 msgstr "待反馈"
