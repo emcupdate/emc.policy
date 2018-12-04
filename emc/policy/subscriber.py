@@ -10,6 +10,7 @@ def UserLogoutEventHandler(event):
     from emc.kb.interfaces import IUserLogLocator,IDbapi
     from zope.component import getUtility,queryUtility
     dbapi = queryUtility(IDbapi, name="userlog")
+    # check log size
     rt = check_log(dbapi)
     
     values = {'userid':event.userid,'datetime':event.datetime,
@@ -23,6 +24,7 @@ def UserLoginEventHandler(event):
     from emc.kb.interfaces import IUserLogLocator,IDbapi
     from zope.component import getUtility,queryUtility
     dbapi = queryUtility(IDbapi, name="userlog")
+    # check log size    
     rt = check_log(dbapi)
     
     values = {'userid':event.userid,'datetime':event.datetime,
