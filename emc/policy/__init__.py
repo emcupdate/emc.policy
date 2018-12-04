@@ -40,6 +40,7 @@ def get_ip(request = None):
     if request == None:return ""
     ip = request.get("HTTP_CLIENTIP",'')
     if bool(ip):
+        logging.info("client ip:%s" % str(ip))        
         return ip    
     elif "HTTP_X_FORWARDED_FOR" in request.environ:
         # Virtual host
