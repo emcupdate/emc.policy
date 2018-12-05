@@ -153,7 +153,7 @@ def isNotCurrentProfile(context):
 def setupGroups(context):
     """create emc management groups and management users
     """
-    
+    from emc.memberArea.events import BackMemberCreatedEvent
     group = api.group.create(
             groupname='System Administrators',
             title='System Administrators',
@@ -172,14 +172,18 @@ def setupGroups(context):
             description='EMC Secure Auditors',
             roles=['SecAuditor', ],
             )
-
-    api.user.create(
+    properties= dict(fullname=u'李四'.encode('utf-8'))
+    demo = api.user.create(
             username='333010199106113321' ,
 #             fullname=u'李四',
             email='lisi@plone.org',
             password='secret$',
+            properties=properties
 #             id_number='333010199106113321',
                                )
+    if demo != None:
+        event.notify(BackMemberCreatedEvent(demo))    
+    
     api.group.add_user(groupname='System Administrators', username='test17')
     api.group.add_user(groupname='Secure Staffs', username='test18')
     api.group.add_user(groupname='Secure Auditors', username='test19')
