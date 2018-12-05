@@ -63,9 +63,13 @@ def loginUser(self, REQUEST=None):
         user=getSecurityManager().getUser()
         if user is None:
             return
-
+        try:
+            home = self.getHomeFolder(user.getId())
+        except:
+            home = None
         res = self.setLoginTimes()
-
+        res = res and not home
+        
         loginEvent = NormalUserloginEvent(userid = getfullname_orid(user),
                                      datetime = datetime.datetime.now().strftime(fmt),
                                      ip = get_ip(),
@@ -85,7 +89,9 @@ def loginUser(self, REQUEST=None):
                                      result = 1)                
                 event.notify(loginEvent)
         if res:
-            event.notify(UserInitialLoginInEvent(user))            
+            event.notify(UserInitialLoginInEvent(user))
+            self.createMemberArea()
+            event.notify(MemberAreaCreatedEvent(user))                        
         else:
             event.notify(UserLoggedInEvent(user))
 
@@ -98,17 +104,12 @@ def loginUser(self, REQUEST=None):
         if REQUEST.get('__cp', None) is not None:
             REQUEST.RESPONSE.expireCookie('__cp', path='/')
 
-#         import pdb
-#         pdb.set_trace()
-        self.createMemberArea()
-        if res:
-            event.notify(MemberAreaCreatedEvent(user))
+
         try:
             pas = getToolByName(self, 'acl_users')
+            
             pas.credentials_cookie_auth.login()
-#             if res:
-#                 event.notify(MemberAreaCreatedEvent(user)) 
-            #set the cookie __ac so that client can remember it
+
 
         except AttributeError:
             # The cookie plugin may not be present
