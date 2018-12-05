@@ -1,5 +1,6 @@
 #-*- coding: UTF-8 -*-
 from zope.i18nmessageid import MessageFactory
+import logging
 
 _ = MessageFactory('emc.policy')
 
