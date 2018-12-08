@@ -112,6 +112,9 @@ msgstr "系统日志"
 msgid "User log"
 msgstr "用户日志"
 
+msgid "Set log"
+msgstr "日志设置"
+
 #: ./profiles/default/registry.xml
 msgid "The content types that should be shown in the navigation and site map."
 msgstr "这些内容类型将被显示在导航区和站点地图中。"
