@@ -7,7 +7,7 @@
     <field name="safe_level" type="zope.schema.Choice" users:forms="On Registration">
       <description/>
       <default>65</default>
-      <required>False</required>
+      <required>True</required>
       <title i18n:translate="">safe level</title>
       <vocabulary>emc.safe_level</vocabulary>
     </field>
