@@ -47,6 +47,18 @@
    </property>
    <property name="visible">True</property>
   </object>
+  <object name="setlog" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Set log</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${portal_url}/@@log-settings</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:member.has_role('SysAdmin')</property>
+   <property name="permissions">
+    <element value="emc.kb:Set log"/>
+   </property>
+   <property name="visible">True</property>
+  </object>  
   <object name="managepermission" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">Permission management</property>
    <property name="description" i18n:translate=""></property>
