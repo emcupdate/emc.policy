@@ -175,18 +175,42 @@ def setupGroups(context):
     properties= dict(fullname=u'李四'.encode('utf-8'))
     demo = api.user.create(
             username='333010199106113321' ,
-#             fullname=u'李四',
             email='lisi@plone.org',
             password='secret$',
             properties=properties
-#             id_number='333010199106113321',
                                )
     if demo != None:
         event.notify(BackMemberCreatedEvent(demo))    
-    
-    api.group.add_user(groupname='System Administrators', username='test17')
-    api.group.add_user(groupname='Secure Staffs', username='test18')
-    api.group.add_user(groupname='Secure Auditors', username='test19')
+    properties= dict(fullname=u'系统管理员'.encode('utf-8'))
+    demo = api.user.create(
+            username='111111222222333333' ,
+            email='sysadmin@plone.org',
+            password='secret$',
+            properties=properties
+                               )
+    if demo != None:
+        event.notify(BackMemberCreatedEvent(demo))
+    properties= dict(fullname=u'安全管理员'.encode('utf-8'))
+    demo = api.user.create(
+            username='444444555555666666' ,
+            email='secstaff@plone.org',
+            password='secret$',
+            properties=properties
+                               )
+    if demo != None:
+        event.notify(BackMemberCreatedEvent(demo))
+    properties= dict(fullname=u'安全审计员'.encode('utf-8'))
+    demo = api.user.create(
+            username='777777888888999999' ,
+            email='secauditor@plone.org',
+            password='secret$',
+            properties=properties
+                               )
+    if demo != None:
+        event.notify(BackMemberCreatedEvent(demo))                    
+    api.group.add_user(groupname='System Administrators', username='111111222222333333')
+    api.group.add_user(groupname='Secure Staffs', username='444444555555666666')
+    api.group.add_user(groupname='Secure Auditors', username='777777888888999999')
 
 
 # def run_after(context):
@@ -222,23 +246,20 @@ def post_install(context):
         return   
     for item in STRUCTURE:
         _create_content(item, portal) 
-    for i in range(1,20): 
-#         if i >= 10:
-#             idnumber = '5330101991061133%s' % i
-#         else:
-#             idnumber = '53301019910611331%s' % i
-        user = api.user.create(
-                               username='test%s' % i,
-#                                fullname=u'张测%s',
-                               email='test%s@plone.org' % i,
-                               password='secret',                               
-                               )
+#     for i in range(1,20): 
+# 
+#         user = api.user.create(
+#                                username='test%s' % i,
+# #                                fullname=u'张测%s',
+#                                email='test%s@plone.org' % i,
+#                                password='secret',                               
+#                                )
     setupGroups(context)    
     # add localroles 'Manager' to projectFolder for SecStuff
     
     try:
-        portal['project_folder'].manage_setLocalRoles('test18',['Site Administrator'])
-        portal['project_folder']['notebooke210'].manage_setLocalRoles('test18',['Site Administrator'])
+        portal['project_folder'].manage_setLocalRoles('444444555555666666',['Site Administrator'])
+        portal['project_folder']['notebooke210'].manage_setLocalRoles('444444555555666666',['Site Administrator'])
     except:
         pass
     try:

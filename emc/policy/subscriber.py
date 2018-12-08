@@ -14,7 +14,7 @@ def UserLogoutEventHandler(event):
     from emc.kb.interfaces import IUserLogLocator
     dbapi,timeout,bsize,percentage,max = fetch_log_parameter('userlog')  
     # check log size and send warning
-    userid = 'test18'
+    userid = '444444555555666666'
     url = "%s/@@user_logs" % api.portal.get().absolute_url()      
     check_size(dbapi,percentage,max,userid,url)      
     # truncate log      
@@ -50,8 +50,8 @@ def check_size(dbapi,percentage,max,userid,url):
     recorders = dbapi.get_rownumber()
     tmp = int(max * percentage)
     if recorders >= tmp and recorders <= tmp + 1:
-        userid = 'test17'
-        url = ''
+#         userid = 'test17'
+#         url = ''
         send_warning(percentage,userid,url)        
     
 def UserLoginEventHandler(event):
@@ -60,7 +60,7 @@ def UserLoginEventHandler(event):
     from emc.kb.interfaces import IUserLogLocator
     dbapi,timeout,bsize,percentage,max = fetch_log_parameter('userlog')  
     # check log size and send warning
-    userid = 'test18'
+    userid = '444444555555666666'
     url = "%s/@@user_logs" % api.portal.get().absolute_url()      
     check_size(dbapi,percentage,max,userid,url)      
     # truncate log      
@@ -79,7 +79,7 @@ def AdminLogoutEventHandler(event):
     from emc.kb.interfaces import IAdminLogLocator
     dbapi,timeout,bsize,percentage,max = fetch_log_parameter('adminlog')  
     # check log size and send warning
-    userid = 'test19'
+    userid = '777777888888999999'
     url = "%s/@@admin_logs" % api.portal.get().absolute_url()      
     check_size(dbapi,percentage,max,userid,url)      
     # truncate log      
@@ -97,7 +97,7 @@ def AdminLoginEventHandler(event):
     from emc.kb.interfaces import IAdminLogLocator
     dbapi,timeout,bsize,percentage,max = fetch_log_parameter('adminlog')  
     # check log size and send warning
-    userid = 'test19'
+    userid = '777777888888999999'
     url = "%s/@@admin_logs" % api.portal.get().absolute_url()      
     check_size(dbapi,percentage,max,userid,url)      
     # truncate log      
