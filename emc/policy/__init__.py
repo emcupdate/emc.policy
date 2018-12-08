@@ -1,9 +1,9 @@
 #-*- coding: UTF-8 -*-
 from zope.i18nmessageid import MessageFactory
-import logging
+# import logging
+
 
 _ = MessageFactory('emc.policy')
-
 
 def initialize(context):
     """Initializer called when used as a Zope 2 product."""
@@ -11,6 +11,7 @@ def initialize(context):
 
 import datetime
 fmt = "%Y-%m-%d %H:%M:%S"
+
 
 def list2str(lst):
     "transfer a list to string"
@@ -40,9 +41,12 @@ def get_ip(request = None):
         request = getRequest()
     if request == None:return ""
     ip = request.get("HTTP_CLIENTIP",'')
+  
+    
     if bool(ip):
-        logging.info("client ip:%s" % str(ip))        
+#         logging.info("client ip:%s" % str(ip))        
         return ip    
+
     elif "HTTP_X_FORWARDED_FOR" in request.environ:
         # Virtual host
         ip = request.environ["HTTP_X_FORWARDED_FOR"]
