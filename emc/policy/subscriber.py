@@ -1,9 +1,10 @@
 #-*- coding: UTF-8 -*-
 from zope.component import getMultiAdapter
+from zope.component import getUtility
 from zope.site.hooks import getSite
 from Products.CMFCore.utils import getToolByName
 from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
-from emc.policy.utils import check_log
+from emc.policy.utils import CheckLog
 from emc.policy.utils import send_warning
 from plone import api
 
@@ -30,8 +31,8 @@ def UserLogoutEventHandler(event):
 def fetch_log_parameter(table):
     "fetch log system's settings"
     from emc.kb.interfaces import IDbapi
-    from zope.component import getUtility,queryUtility    
-    from emc.policy.utils import CheckLog
+    from zope.component import queryUtility    
+#     from emc.policy.utils import CheckLog
     from plone.registry.interfaces import IRegistry
     from emc.kb.interfaces import ILogSettings
     dbapi = queryUtility(IDbapi, name=table)
