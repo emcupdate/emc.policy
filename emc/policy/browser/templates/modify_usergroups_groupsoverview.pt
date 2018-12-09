@@ -22,7 +22,7 @@
                  showAll python:request.get('showAll', '') and not view.newSearch and 'y';
                  Batch python:modules['Products.CMFPlone'].Batch;
                  b_start python:0 if showAll or view.newSearch else request.get('b_start',0);
-                 portal_roles view/portal_roles;
+                 portal_roles python:view.roleFilter();
                  search_results view/searchResults;
                  b_size python:showAll and len(search_results) or 20;
                  batch python:search_results and Batch(search_results, b_size, int(b_start), orphan=1) or None;

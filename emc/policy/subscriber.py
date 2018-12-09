@@ -116,7 +116,7 @@ def DeleteMemberEventHandler(event):
     from emc.kb.interfaces import IAdminLogLocator,IDbapi
     from zope.component import getUtility,queryUtility
     dbapi = queryUtility(IDbapi, name="adminlog")
-    rt = check_log(dbapi)
+#     rt = check_log(dbapi)
     
     values = {'adminid':event.adminid,'userid':event.userid,'datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
@@ -129,7 +129,7 @@ def CreateMemberEventHandler(event):
     from emc.kb.interfaces import IAdminLogLocator,IDbapi
     from zope.component import getUtility,queryUtility
     dbapi = queryUtility(IDbapi, name="adminlog")
-    rt = check_log(dbapi)
+#     rt = check_log(dbapi)
     
     values = {'adminid':event.adminid,'userid':event.userid,'datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
@@ -142,7 +142,7 @@ def ChangeMemberEventHandler(event):
     from emc.kb.interfaces import IAdminLogLocator,IDbapi
     from zope.component import getUtility,queryUtility
     dbapi = queryUtility(IDbapi, name="adminlog")
-    rt = check_log(dbapi)
+#     rt = check_log(dbapi)
     
     values = {'adminid':event.adminid,'userid':event.userid,'datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
