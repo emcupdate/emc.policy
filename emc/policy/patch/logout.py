@@ -17,7 +17,7 @@ def logout(self, REQUEST):
                                      result = 1)
 
     if logoutEvent.available():
-        if loginEvent.is_normal_user():
+        if logoutEvent.is_normal_user():
             event.notify(logoutEvent)
         else:
             logoutEvent = AddlogoutEvent(adminid = getfullname_orid(user),
@@ -27,7 +27,9 @@ def logout(self, REQUEST):
                                      type = 0,
                                      description = "",
                                      result = 1)
-            event.notify(logoutEvent)            
+            event.notify(logoutEvent)
+            
+                    
     self.resetCredentials(REQUEST, REQUEST['RESPONSE'])
 
     # Little bit of a hack: Issuing a redirect to the same place
