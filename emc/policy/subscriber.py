@@ -13,18 +13,18 @@ def UserLogoutEventHandler(event):
     """normal users logout event handler"""
     
     from emc.kb.interfaces import IUserLogLocator
-    dbapi,timeout,bsize,percentage,max = fetch_log_parameter('userlog')  
-    # check log size and send warning
-    userid = '444444555555666666'
-    url = "%s/@@user_logs" % api.portal.get().absolute_url()      
-    check_size(dbapi,percentage,max,userid,url)      
-    # truncate log      
-    task = CheckLog(3,dbapi,timeout,bsize,max,percentage)
-    task.start()
+#     dbapi,timeout,bsize,percentage,max = fetch_log_parameter('userlog')  
+#     # check log size and send warning
+#     userid = '444444555555666666'
+#     url = "%s/@@user_logs" % api.portal.get().absolute_url()      
+#     check_size(dbapi,percentage,max,userid,url)      
+#     # truncate log      
+#     task = CheckLog(3,dbapi,timeout,bsize,max,percentage)
+#     task.start()
     
     values = {'userid':event.userid,'datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
-    values['description'] = u"用户%s登出了EMC系统" % (event.userid)  
+    values['description'] = u"%s登出了EMC系统" % (event.userid)  
     locator = getUtility(IUserLogLocator)
     locator.add(values)
 
@@ -59,18 +59,21 @@ def UserLoginEventHandler(event):
     """normal users login event handler"""
     
     from emc.kb.interfaces import IUserLogLocator
-    dbapi,timeout,bsize,percentage,max = fetch_log_parameter('userlog')  
-    # check log size and send warning
-    userid = '444444555555666666'
-    url = "%s/@@user_logs" % api.portal.get().absolute_url()      
-    check_size(dbapi,percentage,max,userid,url)      
-    # truncate log      
-    task = CheckLog(3,dbapi,timeout,bsize,max,percentage)
-    task.start()
+#     dbapi,timeout,bsize,percentage,max = fetch_log_parameter('userlog')  
+#     # check log size and send warning
+#     userid = '444444555555666666'
+#     url = "%s/@@user_logs" % api.portal.get().absolute_url()      
+#     check_size(dbapi,percentage,max,userid,url)      
+#     # truncate log      
+#     task = CheckLog(3,dbapi,timeout,bsize,max,percentage)
+#     task.start()
     
     values = {'userid':event.userid,'datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
-    values['description'] = u"用户%s登陆了EMC系统" % (event.userid)  
+    if event.description == "":
+        values['description'] = u"%s登出了EMC系统" % (event.userid)
+    else:
+        values['description'] = u"%s%s" % (event.userid,event.description)  
     locator = getUtility(IUserLogLocator)
     locator.add(values)
 
@@ -84,12 +87,15 @@ def AdminLogoutEventHandler(event):
     url = "%s/@@admin_logs" % api.portal.get().absolute_url()      
     check_size(dbapi,percentage,max,userid,url)      
     # truncate log      
-    task = CheckLog(3,dbapi,timeout,bsize,max,percentage)
+    task = CheckLog(8,dbapi,timeout,bsize,max,percentage)
     task.start()
     
     values = {'adminid':event.adminid,'userid':' ','datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
-    values['description'] = u"用户%s登出了EMC系统" % (event.adminid)  
+    if event.description == "":
+        values['description'] = u"%s登出了EMC系统" % (event.adminid)
+    else:
+        values['description'] = u"%s%s" % (event.adminid,event.description)          
     locator = getUtility(IAdminLogLocator)
     locator.add(values)
 
@@ -102,7 +108,7 @@ def AdminLoginEventHandler(event):
     url = "%s/@@admin_logs" % api.portal.get().absolute_url()      
     check_size(dbapi,percentage,max,userid,url)      
     # truncate log      
-    task = CheckLog(3,dbapi,timeout,bsize,max,percentage)
+    task = CheckLog(8,dbapi,timeout,bsize,max,percentage)
     task.start()
     
     values = {'adminid':event.adminid,'userid':' ','datetime':event.datetime,
