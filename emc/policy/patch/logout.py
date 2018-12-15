@@ -8,6 +8,7 @@ def logout(self, REQUEST):
     """Publicly accessible method to log out a user
     """
     user = getSecurityManager().getUser()
+    if user is None:return
 
     logoutEvent = NormalUserlogoutEvent(userid = getfullname_orid(user),
                                      datetime = datetime.datetime.now().strftime(fmt),
