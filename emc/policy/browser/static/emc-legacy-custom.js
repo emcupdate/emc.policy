@@ -46,10 +46,25 @@ if ($('#searchResultDiv') !== null || $('#searchResultDiv') !==undefined){
 }
 else {
 	url = url + '/@@ajax_listings';
-	window.location.href = url;
+	window.location.href = url;	
 }	
  return false;	
 });
+// if current url is dropdown item
+$('#navbar-collapse-kb-orm .dropdown-menu li a').on('click',function (){
+	var url = $(this).attr('href');
+	if (url.indexOf('jieshou') !== -1 || url.indexOf('fashe') !== -1){
+		$(this).parent().parent().parent().addClass('active');
+	}
+	if (url.indexOf('bachang') !== -1 ){
+		$(this).parent().parent().parent().addClass('active');
+	}
+	if (url.indexOf('ceshi') !== -1 ){
+		$(this).parent().parent().parent().addClass('active');
+	}		
+
+});
+// sage link to
 $('a[href^="http://mw4024.wicp.net:8089/"]').attr('target','_blank').attr('class','outputlink');
 });
 });
