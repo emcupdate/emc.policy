@@ -71,7 +71,7 @@ def UserLoginEventHandler(event):
     values = {'userid':event.userid,'datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
     if event.description == "":
-        values['description'] = u"%s登出了EMC系统" % (event.userid)
+        values['description'] = u"%s登入了EMC系统" % (event.userid)
     else:
         values['description'] = u"%s%s" % (event.userid,event.description)  
     locator = getUtility(IUserLogLocator)
@@ -113,7 +113,7 @@ def AdminLoginEventHandler(event):
     
     values = {'adminid':event.adminid,'userid':' ','datetime':event.datetime,
               'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
-    values['description'] = u"用户%s登陆了EMC系统" % (event.adminid)  
+    values['description'] = u"%s登陆了EMC系统" % (event.adminid)  
     locator = getUtility(IAdminLogLocator)
     locator.add(values)
     
