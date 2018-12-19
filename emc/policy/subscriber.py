@@ -4,6 +4,7 @@ from zope.component import getUtility
 from zope.site.hooks import getSite
 from Products.CMFCore.utils import getToolByName
 from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
+from emc.policy import fmt,get_ip
 from emc.policy.utils import CheckLog
 from emc.policy.utils import send_warning
 from plone import api
@@ -147,7 +148,7 @@ def ChangeMemberEventHandler(event):
     """the system administrator change specify user handler"""
     from emc.kb.interfaces import IAdminLogLocator,IDbapi
     from zope.component import getUtility,queryUtility
-    dbapi = queryUtility(IDbapi, name="adminlog")
+#     dbapi = queryUtility(IDbapi, name="adminlog")
 #     rt = check_log(dbapi)
     
     values = {'adminid':event.adminid,'userid':event.userid,'datetime':event.datetime,
@@ -157,8 +158,28 @@ def ChangeMemberEventHandler(event):
     locator = getUtility(IAdminLogLocator)
     locator.add(values)
          
-  
+def objectCreated(obj,event):
+    "ObjectCreated event handler"
+      
+    from emc.kb.interfaces import IAdminLogLocator,IDbapi
+    from zope.component import getUtility,queryUtility
+#     dbapi = queryUtility(IDbapi, name="adminlog")
+#     rt = check_log(dbapi)obj.creators
+    
+#     import pdb
+#     pdb.set_trace()
+    adminid = obj.creators
+    created = obj.created().strftime(fmt)
+    ip = get_ip()
+    if ip=="":ip='127.0.0.1'
+    if len(adminid):adminid=adminid[0]
+    values = {'adminid':adminid,'userid':obj.id,'datetime':created,
+              'ip':ip,'type':0,'operlevel':4,'result':1,'description':u''}                
+    values['description'] = u"%s创建了%s:%s" % (adminid,obj.id,obj.title)  
 
+    locator = getUtility(IAdminLogLocator)
+    locator.add(values)
+    
 def userLoginedIn(event):
     """Redirects  logged in users to getting started wizard"""  
 
