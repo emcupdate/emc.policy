@@ -37,6 +37,9 @@ class SitePolicy(PloneSandboxLayer):
         import emc.kb
         import emc.bokeh
         import emc.memberArea
+        import emc.auth
+        import emc.sync
+        import collective.externaleditor                
         xmlconfig.file('configure.zcml', plone.app.contenttypes, context=configurationContext)
         xmlconfig.file('configure.zcml', emc.policy, context=configurationContext)
         xmlconfig.file('configure.zcml', emc.theme, context=configurationContext)
@@ -44,6 +47,9 @@ class SitePolicy(PloneSandboxLayer):
         xmlconfig.file('configure.zcml', emc.kb, context=configurationContext)
         xmlconfig.file('configure.zcml', emc.memberArea, context=configurationContext)
         xmlconfig.file('configure.zcml', emc.project, context=configurationContext)
+        xmlconfig.file('configure.zcml', emc.auth, context=configurationContext)
+        xmlconfig.file('configure.zcml', emc.sync, context=configurationContext)
+        xmlconfig.file('configure.zcml', collective.externaleditor, context=configurationContext)                
      
         # Install products that use an old-style initialize() function
 
