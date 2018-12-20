@@ -139,3 +139,9 @@ msgstr ""
 
 msgid "User log"
 msgstr ""
+
+msgid "heading_quit_emc_log_out"
+msgstr ""
+
+msgid "description_quit_emc_log_out"
+msgstr ""

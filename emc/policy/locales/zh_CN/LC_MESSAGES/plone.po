@@ -217,3 +217,8 @@ msgstr "用户管理"
 msgid "Permission management"
 msgstr "权限管理"
 
+msgid "heading_quit_emc_log_out"
+msgstr "正在执行登出操作ing"
+
+msgid "description_quit_emc_log_out"
+msgstr "由于系统采用网关认证方式,您执行登出操作时,应该拨出Usb key"
