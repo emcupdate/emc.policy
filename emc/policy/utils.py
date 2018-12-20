@@ -71,7 +71,7 @@ class CheckLog (threading.Thread):
     def run(self):
        
         nw = time.localtime().tm_hour
-        recorders = dbapi.get_rownumber()
+        recorders = self.dbapi.get_rownumber()
         if nw >= self.time and recorders > self.max:
             self.check_log(self.dbapi,self.timeout,self.bsize,self.max)
             return
