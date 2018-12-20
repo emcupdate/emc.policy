@@ -161,8 +161,8 @@ def ChangeMemberEventHandler(event):
 def objectCreated(obj,event):
     "ObjectCreated event handler"
       
-    from emc.kb.interfaces import IAdminLogLocator,IDbapi
-    from zope.component import getUtility,queryUtility
+    from emc.kb.interfaces import IUserLogLocator
+    from zope.component import getUtility
     from plone import api    
 #     import pdb
 #     pdb.set_trace()
@@ -173,11 +173,11 @@ def objectCreated(obj,event):
     if len(adminid):adminid=adminid[0]
     user = api.user.get(username=adminid)
     user = getfullname_orid(user)
-    values = {'adminid':user,'userid':' ','datetime':created,
+    values = {'userid':user,'datetime':created,
               'ip':ip,'type':0,'operlevel':4,'result':1,'description':u''}                
     values['description'] = u"%s创建了:%s" % (user,obj.title)  
 
-    locator = getUtility(IAdminLogLocator)
+    locator = getUtility(IUserLogLocator)
     locator.add(values)
     
 def userLoginedIn(event):
