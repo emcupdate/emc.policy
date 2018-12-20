@@ -29,7 +29,13 @@
       class=".overview.OverviewControlPanel"
       permission="plone.app.controlpanel.Overview"
       />
-      
+  <browser:page
+      name="auth-tips"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      layer="emc.theme.interfaces.IThemeSpecific"      
+      template="templates/auth_tips_view.pt"
+      permission="zope2.View"
+      />      
   <!-- VIEWS FOR three class permissions -->
   <browser:page
       name="add-usergroup-userprefs"
