@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"      
+      i18n:domain="emc.project">        
+
+
+<body>
+<metal:main fill-slot="main">
+<div class="row">
+       	<div class="col-xs-12">
+       		<h1 class="text-center">           	
+           	<strong><span class="title">未授权的访问!</span></strong>
+           </h1>
+       </div>
+       <div class="row">
+       	<div class="col-xs-12">        	
+           	<p class="description" style="text-indent:2em">访问该资源需要插上USB key,经由网关认证,并获得管理员的相应授权.</p>
+       	</div>      	
+       </div>
+</metal:main>
+</body>
+</html>

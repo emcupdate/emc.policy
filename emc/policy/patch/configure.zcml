@@ -26,13 +26,14 @@
      original="showChildrenOf"
      replacement=".navtree.showChildrenOf"
   />
+  -->
     <monkey:patch
-     description="patch PlonePAS delete user"
-     module ="Products.PlonePAS.pas"
-     original="_doDelUser"
-     replacement=".pas._doDelUser"
+     description="patch cookieAuth to cancel login form tips"
+     class ="Products.PluggableAuthService.plugins.CookieAuthHelper.CookieAuthHelper"
+     original="unauthorized"
+     replacement=".CookieAuthHelper.unauthorized"
   />   
-    -->
+
     <monkey:patch
      description="patch i18njs view for zh"
      class ="plone.app.content.browser.i18n.i18njs"
