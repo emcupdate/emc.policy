@@ -21,6 +21,16 @@
        <role name="SysAdmin" />
        <role name="SecStaff" /> 
        <role name="SecAuditor" />              
-    </permission>      	
+    </permission>
+	<permission name="emc.kb:Input db" acquire="True">
+		<role name="Manager"/>	
+		<role name="EMCDesigner"/>
+		<role name="Designer"/>			
+    </permission>
+	<permission name="emc.kb:Update db" acquire="True">
+		<role name="Manager"/>	
+		<role name="EMCDesigner"/>
+		<role name="Designer"/>		
+    </permission>          	
   </permissions>  	  		
 </rolemap>
