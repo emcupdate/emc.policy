@@ -133,7 +133,7 @@ STRUCTURE = [
                       'title': u'数据库',
                       'id': 'ormfolder',
                       'description': u'问题库',
-                      'layout': 'folder_contents',
+                      'layout': 'fashej_listings',
                       },
                      {
                       'type': 'emc.kb.kbfolder',
