@@ -4,7 +4,7 @@ from zope.component import getUtility
 from zope.site.hooks import getSite
 from Products.CMFCore.utils import getToolByName
 from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
-from emc.policy import fmt,get_ip
+from emc.policy import fmt,get_ip,getfullname_orid
 from emc.policy.utils import CheckLog
 from emc.policy.utils import send_warning
 from plone import api
@@ -163,9 +163,7 @@ def objectCreated(obj,event):
       
     from emc.kb.interfaces import IAdminLogLocator,IDbapi
     from zope.component import getUtility,queryUtility
-#     dbapi = queryUtility(IDbapi, name="adminlog")
-#     rt = check_log(dbapi)obj.creators
-    
+    from plone import api    
 #     import pdb
 #     pdb.set_trace()
     adminid = obj.creators
@@ -173,9 +171,11 @@ def objectCreated(obj,event):
     ip = get_ip()
     if ip=="":ip='127.0.0.1'
     if len(adminid):adminid=adminid[0]
-    values = {'adminid':adminid,'userid':obj.id,'datetime':created,
+    user = api.user.get(username=adminid)
+    user = getfullname_orid(user)
+    values = {'adminid':user,'userid':' ','datetime':created,
               'ip':ip,'type':0,'operlevel':4,'result':1,'description':u''}                
-    values['description'] = u"%s创建了%s:%s" % (adminid,obj.id,obj.title)  
+    values['description'] = u"%s创建了:%s" % (user,obj.title)  
 
     locator = getUtility(IAdminLogLocator)
     locator.add(values)
