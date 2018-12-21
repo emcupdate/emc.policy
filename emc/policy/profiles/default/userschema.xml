@@ -4,8 +4,10 @@
        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
        i18n:domain="plone">
     <schema name="member-fields">
-    <field name="safe_level" type="zope.schema.Choice" users:forms="On Registration">
+    <field name="safe_level" type="zope.schema.Choice" users:forms="On Registration"
+    	form:validator="emc.policy.utils.SafeLevelValidator">
       <description/>
+      <default>100</default>
       <required>True</required>
       <title i18n:translate="">safe level</title>
       <vocabulary>emc.safe_level</vocabulary>

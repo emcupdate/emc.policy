@@ -10,6 +10,7 @@ from Products.CMFPlone import PloneMessageFactory as _
 一般  70
 重要  80
 核心  90
+空值 100
 """
 
 # items = [ ('low', _('secret')),
@@ -20,7 +21,8 @@ items = [ ('60', _('no secret')),
           ('65', _('inner')),
           ('70', _('normal secret')), 
           ('80', _('more secret')),
-          ('90', _('most secret')),                     
+          ('90', _('most secret')),
+          ('100', _('Null')),                     
           ]
 terms = [ SimpleTerm(value=pair[0], token=pair[0], title=pair[1]) for pair in items ]
 Vocabulary = SimpleVocabulary(terms)

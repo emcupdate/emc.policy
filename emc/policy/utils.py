@@ -8,6 +8,16 @@ import logging
 import datetime
 import threading
 import time
+from z3c.form.validator import SimpleFieldValidator
+from Products.CMFPlone import PloneMessageFactory as _
+
+
+class SafeLevelValidator(SimpleFieldValidator):
+    
+    def validate(self, value):
+        value = str(value)
+        if len(value) > 2:
+            raise ValueError(_(u'you selected safe level is not correct'))
 
 def getDropdownDepth():
     ptool = getUtility(IPropertiesTool)
