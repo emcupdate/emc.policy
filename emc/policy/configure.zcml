@@ -35,13 +35,23 @@
    <include package=".browser" />
    <include package=".portlets" />   
    <include package=".patch" />
-      
-	<!-- login redirection to workspace
-	<subscriber
-    	for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
-    	handler=".subscriber.userLoginedIn"
-    /> -->
-    
+     
+	<!-- created content fire a add log event -->
+    <subscriber
+    	for="plone.app.contenttypes.interfaces.IDocument
+    	zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+    	handler=".subscriber.objectCreated"
+    />
+    <subscriber
+    	for="plone.app.contenttypes.interfaces.IFile
+    	zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+    	handler=".subscriber.objectCreated"
+    />
+    <subscriber
+    	for="plone.app.contenttypes.interfaces.IImage
+    	zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+    	handler=".subscriber.objectCreated"
+    />        
     <subscriber
     	for="emc.project.interface.IProjectContent
     	zope.lifecycleevent.interfaces.IObjectCreatedEvent"
