@@ -8,7 +8,7 @@ from emc.policy import fmt,get_ip,getfullname_orid
 from emc.policy.utils import CheckLog
 from emc.policy.utils import send_warning
 from plone import api
-
+import datetime
 
 def UserLogoutEventHandler(event):
     """normal users logout event handler"""
@@ -163,9 +163,7 @@ def objectCreated(obj,event):
       
     from emc.kb.interfaces import IUserLogLocator
     from zope.component import getUtility
-    from plone import api    
-#     import pdb
-#     pdb.set_trace()
+    from plone import api   
     adminid = obj.creators
     created = obj.created().strftime(fmt)
     ip = get_ip()
@@ -175,11 +173,31 @@ def objectCreated(obj,event):
     user = getfullname_orid(user)
     values = {'userid':user,'datetime':created,
               'ip':ip,'type':0,'operlevel':4,'result':1,'description':u''}                
-    values['description'] = u"%s创建了:%s" % (user,obj.title)  
-
+    values['description'] = u"%s创建了:%s" % (user,obj.title) 
     locator = getUtility(IUserLogLocator)
     locator.add(values)
     
+def objectDeleted(obj,event):
+    "ObjectDeleted event handler"
+      
+    from emc.kb.interfaces import IUserLogLocator
+    from zope.component import getUtility
+    from plone import api   
+    adminid = obj.creators
+    dt = datetime.datetime.now().strftime(fmt)
+    ip = get_ip()
+    if ip=="":ip='127.0.0.1'
+    if len(adminid):adminid=adminid[0]
+    import pdb
+    pdb.set_trace()
+    user = api.user.get(username=adminid)
+    user = getfullname_orid(user)
+    values = {'userid':user,'datetime':dt,
+              'ip':ip,'type':0,'operlevel':4,'result':1,'description':u''}                
+    values['description'] = u"%s删除了:%s" % (user,obj.title) 
+    locator = getUtility(IUserLogLocator)
+    locator.add(values)
+
 def userLoginedIn(event):
     """Redirects  logged in users to getting started wizard"""  
 
