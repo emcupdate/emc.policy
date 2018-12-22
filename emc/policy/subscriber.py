@@ -188,8 +188,7 @@ def objectDeleted(obj,event):
     ip = get_ip()
     if ip=="":ip='127.0.0.1'
     if len(adminid):adminid=adminid[0]
-    import pdb
-    pdb.set_trace()
+
     user = api.user.get(username=adminid)
     user = getfullname_orid(user)
     values = {'userid':user,'datetime':dt,
