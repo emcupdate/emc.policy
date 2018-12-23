@@ -36,6 +36,29 @@
    <include package=".portlets" />   
    <include package=".patch" />
 
+
+	<!-- deleted content fire a log event -->
+    <subscriber
+    	for="plone.app.contenttypes.interfaces.IDocument
+    	zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    	handler=".subscriber.objectModified"
+    />
+    <subscriber
+    	for="plone.app.contenttypes.interfaces.IFile
+    	zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    	handler=".subscriber.objectModified"
+    />
+    <subscriber
+    	for="plone.app.contenttypes.interfaces.IImage
+    	zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    	handler=".subscriber.objectModified"
+    />
+    <subscriber
+    	for="emc.project.interface.IProjectContent
+    	zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    	handler=".subscriber.objectModified"
+    />
+    
 	<!-- deleted content fire a log event -->
     <subscriber
     	for="plone.app.contenttypes.interfaces.IDocument

@@ -24,7 +24,7 @@ def UserLogoutEventHandler(event):
 #     task.start()
     
     values = {'userid':event.userid,'datetime':event.datetime,
-              'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
+              'ip':event.ip,'type':0,'operlevel':5,'result':1,'description':u''}                
     values['description'] = u"%s登出了EMC系统" % (event.userid)  
     locator = getUtility(IUserLogLocator)
     locator.add(values)
@@ -70,11 +70,12 @@ def UserLoginEventHandler(event):
 #     task.start()
     
     values = {'userid':event.userid,'datetime':event.datetime,
-              'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
-    if event.description == "":
+              'ip':event.ip,'type':0,'operlevel':5,'result':1,'description':u''}                
+    if not bool(event.description):
         values['description'] = u"%s登入了EMC系统" % (event.userid)
     else:
-        values['description'] = u"%s%s" % (event.userid,event.description)  
+        values['description'] = u"%s%s" % (event.userid,event.description)
+        values['operlevel'] = 4 
     locator = getUtility(IUserLogLocator)
     locator.add(values)
 
@@ -92,11 +93,12 @@ def AdminLogoutEventHandler(event):
     task.start()
     
     values = {'adminid':event.adminid,'userid':' ','datetime':event.datetime,
-              'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
-    if event.description == "":
+              'ip':event.ip,'type':0,'operlevel':5,'result':1,'description':u''}                
+    if not bool(event.description):
         values['description'] = u"%s登出了EMC系统" % (event.adminid)
     else:
-        values['description'] = u"%s%s" % (event.adminid,event.description)          
+        values['description'] = u"%s%s" % (event.adminid,event.description)
+        values['operlevel'] = 4         
     locator = getUtility(IAdminLogLocator)
     locator.add(values)
 
@@ -113,8 +115,13 @@ def AdminLoginEventHandler(event):
     task.start()
     
     values = {'adminid':event.adminid,'userid':' ','datetime':event.datetime,
-              'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
-    values['description'] = u"%s登陆了EMC系统" % (event.adminid)  
+              'ip':event.ip,'type':0,'operlevel':5,'result':1,'description':u''}                
+    if not bool(event.description):
+        values['description'] = u"%s登出了EMC系统" % (event.adminid)
+    else:
+        values['description'] = u"%s%s" % (event.adminid,event.description)
+        values['operlevel'] = 4
+#     values['description'] = u"%s登陆了EMC系统" % (event.adminid)  
     locator = getUtility(IAdminLogLocator)
     locator.add(values)
     
@@ -126,7 +133,7 @@ def DeleteMemberEventHandler(event):
 #     rt = check_log(dbapi)
     
     values = {'adminid':event.adminid,'userid':event.userid,'datetime':event.datetime,
-              'ip':event.ip,'type':0,'operlevel':4,'result':1,'description':u''}                
+              'ip':event.ip,'type':0,'operlevel':2,'result':1,'description':u''}                
     values['description'] = u"管理员%s删除了%s" % (event.adminid,event.userid)  
     locator = getUtility(IAdminLogLocator)
     locator.add(values)
@@ -176,7 +183,26 @@ def objectCreated(obj,event):
     values['description'] = u"%s创建了:%s" % (user,obj.title) 
     locator = getUtility(IUserLogLocator)
     locator.add(values)
-    
+
+def objectModified(obj,event):
+    "ObjectCreated event handler"
+      
+    from emc.kb.interfaces import IUserLogLocator
+    from zope.component import getUtility
+    from plone import api   
+    adminid = obj.creators
+    created = obj.created().strftime(fmt)
+    ip = get_ip()
+    if ip=="":ip='127.0.0.1'
+    if len(adminid):adminid=adminid[0]
+    user = api.user.get(username=adminid)
+    user = getfullname_orid(user)
+    values = {'userid':user,'datetime':created,
+              'ip':ip,'type':0,'operlevel':5,'result':1,'description':u''}                
+    values['description'] = u"%s修改了:%s" % (user,obj.title) 
+    locator = getUtility(IUserLogLocator)
+    locator.add(values)
+        
 def objectDeleted(obj,event):
     "ObjectDeleted event handler"
       
@@ -192,7 +218,7 @@ def objectDeleted(obj,event):
     user = api.user.get(username=adminid)
     user = getfullname_orid(user)
     values = {'userid':user,'datetime':dt,
-              'ip':ip,'type':0,'operlevel':4,'result':1,'description':u''}                
+              'ip':ip,'type':0,'operlevel':2,'result':1,'description':u''}                
     values['description'] = u"%s删除了:%s" % (user,obj.title) 
     locator = getUtility(IUserLogLocator)
     locator.add(values)
