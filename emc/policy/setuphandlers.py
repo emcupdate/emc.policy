@@ -257,11 +257,11 @@ def post_install(context):
     setupGroups(context)    
     # add localroles 'Manager' to projectFolder for SecStuff
     
-    try:
-        portal['project_folder'].manage_setLocalRoles('444444555555666666',['Site Administrator'])
-        portal['project_folder']['notebooke210'].manage_setLocalRoles('444444555555666666',['Site Administrator'])
-    except:
-        pass
+#     try:
+#         portal['project_folder'].manage_setLocalRoles('444444555555666666',['Site Administrator'])
+#         portal['project_folder']['notebooke210'].manage_setLocalRoles('444444555555666666',['Site Administrator'])
+#     except:
+#         pass
     try:
         add_navigator_portlet(context)
     except:
