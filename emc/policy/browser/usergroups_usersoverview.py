@@ -59,7 +59,12 @@ class UsersOverviewControlPanel(UsersGroupsControlPanelView):
         
         origin = self.portal_roles
         return filter(lambda x: x not in rolesfiltered,origin)
-     
+    
+    def userFilter(self,userfiltered=['111111222222333333','444444555555666666','777777888888999999']):
+        """True iff current login user' role"""
+        
+        return userfiltered
+    # end added by adam
     
     def doSearch(self, searchString):
         acl = getToolByName(self, 'acl_users')
@@ -108,6 +113,9 @@ class UsersOverviewControlPanel(UsersGroupsControlPanelView):
         results = []
         for user_info in explicit_users:
             userId = user_info['id']
+            # filter three manager user
+            if userId in self.userFilter():
+                continue
             user = mtool.getMemberById(userId)
             # play safe, though this should never happen
             if user is None:
