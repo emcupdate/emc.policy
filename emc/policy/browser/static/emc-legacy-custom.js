@@ -51,7 +51,7 @@ else {
  return false;	
 });
 // sage link to
-$('a[href^="http://mw4024.wicp.net:8089/"]').attr('target','_blank').attr('class','outputlink');
+$('a[href^="http://emcpt.yfb.ii.com:8089/"]').attr('target','_blank').attr('class','outputlink');
 });
 // ie check
 var version = detectIE();
